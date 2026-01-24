@@ -1,0 +1,8 @@
+# Waypoint publisher specific parameters
+waypoint_publisher:
+  ros__parameters:
+    frame_id: "base_link"
+    world_name: "polkadot"
+    waypoints_x:   [-2.65,  0.11,  2.62,   6.14]
+    waypoints_y:   [6.08,   -6.60, 6.59,   -5.73]
+    waypoints_yaw: [45.00,  45.28, -72.46, 85.11]
