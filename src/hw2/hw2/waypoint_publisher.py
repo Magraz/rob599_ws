@@ -25,7 +25,7 @@ class WaypointPublisher(Node):
                 ("waypoints_x", [0.0]),
                 ("waypoints_y", [0.0]),
                 ("waypoints_yaw", [0.0]),
-                ("frame_id", "base_link"),
+                ("frame_id", "map"),
             ],
         )
 

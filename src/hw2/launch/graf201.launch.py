@@ -38,10 +38,19 @@ def generate_launch_description():
     )
 
     # Waypoint publisher node with shared config
-    waypoint_node = Node(
+    waypoint_pub_node = Node(
         package="hw2",
         executable="waypoint_publisher",
         name="waypoint_publisher",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    # Waypoint publisher node with shared config
+    waypoint_follower_node = Node(
+        package="hw2",
+        executable="waypoint_follower",
+        name="waypoint_follower",
         parameters=[config_file],
         output="screen",
     )
@@ -56,6 +65,7 @@ def generate_launch_description():
         [
             declare_world_cmd,
             stage_demo,
-            waypoint_node,
+            waypoint_pub_node,
+            waypoint_follower_node,
         ]
     )

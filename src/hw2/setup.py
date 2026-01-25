@@ -31,6 +31,8 @@ setup(
         "console_scripts": [
             "waypoint_publisher = hw2.waypoint_publisher:main",
             "waypoint_follower = hw2.waypoint_follower:main",
+            "map_publisher = hw2.map_publisher:main",
+            "vfh_follower = hw2.vfh_follower:main",
         ],
     },
 )

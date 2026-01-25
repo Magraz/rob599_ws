@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist, PoseArray
 from nav_msgs.msg import Odometry
+from std_srvs.srv import SetBool
 import math
 
 
@@ -44,13 +45,19 @@ class WaypointFollower(Node):
         self.current_pose = None
         self.goal_received = False
         self.finished = False
+        self.active = False
 
         # Subscribers
         self.odom_sub = self.create_subscription(
-            Odometry, "/odom", self.odom_callback, 10
+            Odometry, "/ground_truth", self.odom_callback, 10
         )
         self.waypoints_sub = self.create_subscription(
             PoseArray, "/waypoints", self.waypoints_callback, 10
+        )
+
+        # Service
+        self.srv = self.create_service(
+            SetBool, "start_follower", self.start_follower_callback
         )
 
         # Publisher
@@ -62,6 +69,19 @@ class WaypointFollower(Node):
         self.get_logger().info(
             "Waypoint Follower Node Initialized. Waiting for waypoints..."
         )
+
+    def start_follower_callback(self, request, response):
+        """Callback to enable/disable the follower."""
+        self.active = request.data
+        response.success = True
+        if self.active:
+            response.message = "Waypoint follower started."
+        else:
+            response.message = "Waypoint follower stopped."
+            self.stop_robot()
+
+        self.get_logger().info(response.message)
+        return response
 
     def waypoints_callback(self, msg):
         """Store the received waypoints."""
@@ -78,7 +98,7 @@ class WaypointFollower(Node):
 
     def control_loop(self):
         """Main controller logic."""
-        if not self.goal_received or self.finished:
+        if not self.goal_received or self.finished or not self.active:
             return
 
         if self.current_pose is None:

@@ -37,11 +37,38 @@ def generate_launch_description():
         description="World to load in stage (from config or override)",
     )
 
+    one_tf_tree = LaunchConfiguration("one_tf_tree", default="true")
+
     # Waypoint publisher node with shared config
-    waypoint_node = Node(
+    waypoint_pub_node = Node(
         package="hw2",
         executable="waypoint_publisher",
         name="waypoint_publisher",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    # Waypoint publisher node with shared config
+    waypoint_follower_node = Node(
+        package="hw2",
+        executable="waypoint_follower",
+        name="waypoint_follower",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    vfh_follower_node = Node(
+        package="hw2",
+        executable="vfh_follower",
+        name="vfh_follower",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    map_pub_node = Node(
+        package="hw2",
+        executable="map_publisher",
+        name="map_publisher",
         parameters=[config_file],
         output="screen",
     )
@@ -56,6 +83,9 @@ def generate_launch_description():
         [
             declare_world_cmd,
             stage_demo,
-            waypoint_node,
+            map_pub_node,
+            waypoint_pub_node,
+            vfh_follower_node,
+            waypoint_follower_node,
         ]
     )
