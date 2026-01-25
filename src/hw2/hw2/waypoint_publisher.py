@@ -5,6 +5,8 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped, PoseArray, Pose
 from visualization_msgs.msg import Marker, MarkerArray
 from std_msgs.msg import Header
+from rclpy.qos import QoSProfile, QoSDurabilityPolicy, QoSReliabilityPolicy
+
 import math
 
 
@@ -21,7 +23,6 @@ class WaypointPublisher(Node):
         self.declare_parameters(
             namespace="",
             parameters=[
-                ("world_name", ""),
                 ("waypoints_x", [0.0]),
                 ("waypoints_y", [0.0]),
                 ("waypoints_yaw", [0.0]),
@@ -30,7 +31,6 @@ class WaypointPublisher(Node):
         )
 
         # Get parameters
-        self.world_name = self.get_parameter("world_name").value
         waypoints_x = self.get_parameter("waypoints_x").value
         waypoints_y = self.get_parameter("waypoints_y").value
         waypoints_yaw = self.get_parameter("waypoints_yaw").value
@@ -41,12 +41,15 @@ class WaypointPublisher(Node):
         for wx, wy, wyaw in zip(waypoints_x, waypoints_y, waypoints_yaw):
             self.waypoints.append([wx, wy, wyaw])
 
-        self.get_logger().info(
-            f"Loaded {len(self.waypoints)} waypoints for world: {self.world_name}"
-        )
+        self.get_logger().info(f"Loaded {len(self.waypoints)} waypoints")
 
         # Publisher for PoseArray
-        self.poses_publisher = self.create_publisher(PoseArray, "/waypoints", 10)
+        qos = QoSProfile(
+            depth=1,
+            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+            reliability=QoSReliabilityPolicy.RELIABLE,
+        )
+        self.poses_publisher = self.create_publisher(PoseArray, "/waypoints", qos)
 
         # Timer to publish all waypoints once (short delay to ensure connection)
         self.timer = self.create_timer(1.0, self.publish_all_waypoints)

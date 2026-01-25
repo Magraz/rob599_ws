@@ -9,8 +9,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import (
     IncludeLaunchDescription,
     DeclareLaunchArgument,
-    TimerAction,
-)  # <--- Add TimerAction here
+)
 from launch_ros.actions import Node
 import yaml
 
@@ -37,8 +36,6 @@ def generate_launch_description():
         description="World to load in stage (from config or override)",
     )
 
-    one_tf_tree = LaunchConfiguration("one_tf_tree", default="true")
-
     # Waypoint publisher node with shared config
     waypoint_pub_node = Node(
         package="hw2",
@@ -49,13 +46,13 @@ def generate_launch_description():
     )
 
     # Waypoint publisher node with shared config
-    waypoint_follower_node = Node(
-        package="hw2",
-        executable="waypoint_follower",
-        name="waypoint_follower",
-        parameters=[config_file],
-        output="screen",
-    )
+    # waypoint_follower_node = Node(
+    #     package="hw2",
+    #     executable="waypoint_follower",
+    #     name="waypoint_follower",
+    #     parameters=[config_file],
+    #     output="screen",
+    # )
 
     vfh_follower_node = Node(
         package="hw2",
@@ -77,7 +74,10 @@ def generate_launch_description():
     # Include stage_ros2 demo launch file
     stage_demo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(stage_launch_dir, "demo.launch.py")),
-        launch_arguments={"world": world}.items(),
+        launch_arguments={
+            "world": world,
+            "use_stamped_velocity": "true",
+        }.items(),
     )
 
     return LaunchDescription(

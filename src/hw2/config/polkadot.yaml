@@ -10,3 +10,15 @@ waypoint_publisher:
     waypoints_x:   [-2.65,  0.00,  2.89,   6.02]
     waypoints_y:   [6.52,   0.03, 6.54,   0.28]
     waypoints_yaw: [-80.09,  -2.74, -96.31, -156.47]
+    use_sim_time: True
+
+map_publisher:
+  ros__parameters:
+    ground_truth_topic: "/ground_truth"
+    use_sim_time: True
+
+vfh_follower:
+  ros__parameters:
+    linear_speed: 1.0
+    angular_speed_max: 1.0
+    use_sim_time: True

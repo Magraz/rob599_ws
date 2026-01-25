@@ -14,9 +14,13 @@ class MapPublisher(Node):
         self.tf_broadcaster = StaticTransformBroadcaster(self)
         self.map_initialized = False
 
+        # Parameters
+        self.declare_parameter("ground_truth_topic", "/ground_truth")
+        ground_truth_topic = self.get_parameter("ground_truth_topic").value
+
         # Subscribe to ground truth to initialize map frame
         self.ground_truth_sub = self.create_subscription(
-            Odometry, "/ground_truth", self.ground_truth_callback, 10
+            Odometry, ground_truth_topic, self.ground_truth_callback, 10
         )
 
         self.get_logger().info(
@@ -29,7 +33,8 @@ class MapPublisher(Node):
             t = TransformStamped()
 
             # Use current time
-            t.header.stamp = self.get_clock().now().to_msg()
+            t.header.stamp.sec = 0
+            t.header.stamp.nanosec = 0
             t.header.frame_id = "map"
             t.child_frame_id = "odom"
 
