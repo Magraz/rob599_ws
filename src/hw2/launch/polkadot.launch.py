@@ -63,6 +63,7 @@ def generate_launch_description():
         name="vfh_follower",
         parameters=[config_file],
         output="screen",
+        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
     map_pub_node = Node(
@@ -86,6 +87,6 @@ def generate_launch_description():
             map_pub_node,
             waypoint_pub_node,
             vfh_follower_node,
-            waypoint_follower_node,
+            # waypoint_follower_node,
         ]
     )
