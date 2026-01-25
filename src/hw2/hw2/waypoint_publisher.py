@@ -75,8 +75,6 @@ class WaypointPublisher(Node):
             pose.position.z = 0.0
 
             # Convert yaw (waypoint[2]) to quaternion
-            # Assuming waypoint[2] is just the yaw angle in radians
-            # If your params already have qw, adjust accordingly, but usually yaw is just an angle
             qx, qy, qz, qw = euler_to_quaternion(waypoint[2])
 
             pose.orientation.x = qx

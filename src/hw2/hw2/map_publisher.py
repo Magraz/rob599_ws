@@ -40,7 +40,6 @@ class MapPublisher(Node):
 
             # The transform from map to odom is effectively the initial ground truth pose
             # because odom starts at (0,0) relative to its own frame.
-            # So, T_map_odom = Pose_robot_in_map_at_start
             t.transform.translation.x = msg.pose.pose.position.x
             t.transform.translation.y = msg.pose.pose.position.y
             t.transform.translation.z = msg.pose.pose.position.z
@@ -53,7 +52,7 @@ class MapPublisher(Node):
                 f"Initialized map frame at {t.transform.translation.x:.2f}, {t.transform.translation.y:.2f}"
             )
 
-            # Unsubscribe after initialization if you only want it static
+            # Unsubscribe after initialization so that the tf is static
             self.destroy_subscription(self.ground_truth_sub)
 
 

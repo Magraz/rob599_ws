@@ -9,8 +9,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import (
     IncludeLaunchDescription,
     DeclareLaunchArgument,
-    TimerAction,
-)  # <--- Add TimerAction here
+)
 from launch_ros.actions import Node
 import yaml
 
@@ -46,11 +45,19 @@ def generate_launch_description():
         output="screen",
     )
 
-    # Waypoint publisher node with shared config
-    waypoint_follower_node = Node(
+    vfh_follower_node = Node(
         package="hw2",
-        executable="waypoint_follower",
-        name="waypoint_follower",
+        executable="vfh_follower",
+        name="vfh_follower",
+        parameters=[config_file],
+        output="screen",
+        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
+    )
+
+    map_pub_node = Node(
+        package="hw2",
+        executable="map_publisher",
+        name="map_publisher",
         parameters=[config_file],
         output="screen",
     )
@@ -58,14 +65,19 @@ def generate_launch_description():
     # Include stage_ros2 demo launch file
     stage_demo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(stage_launch_dir, "demo.launch.py")),
-        launch_arguments={"world": world}.items(),
+        launch_arguments={
+            "world": world,
+            "use_stamped_velocity": "true",
+        }.items(),
     )
 
     return LaunchDescription(
         [
             declare_world_cmd,
             stage_demo,
+            map_pub_node,
             waypoint_pub_node,
-            waypoint_follower_node,
+            vfh_follower_node,
+            # waypoint_follower_node,
         ]
     )

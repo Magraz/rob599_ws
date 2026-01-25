@@ -34,9 +34,9 @@ class VFHFollower(Node):
         self.declare_parameter("linear_speed", 0.4)
         self.declare_parameter("angular_speed_max", 1.0)
         self.declare_parameter("goal_tolerance", 0.2)
+        self.declare_parameter("robot_radius", 0.5)
         self.declare_parameter("safety_radius", 0.5)
         self.declare_parameter("sector_count", 72)
-        self.declare_parameter("robot_radius", 0.5)
 
         self.declare_parameter("w_goal", 1.0)
         self.declare_parameter("w_smooth", 0.3)
@@ -316,7 +316,7 @@ class VFHFollower(Node):
                 -self.angular_speed_max,
             )
             msg.twist.linear.x = self.linear_speed * (
-                0.2 if abs(steer_angle) > 0.5 else self.linear_speed
+                0.0 if abs(steer_angle) > 0.5 else self.linear_speed
             )
             self.prev_steer_angle = steer_angle
         else:

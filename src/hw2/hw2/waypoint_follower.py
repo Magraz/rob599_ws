@@ -131,7 +131,7 @@ class WaypointFollower(Node):
         current_yaw = get_yaw_from_quaternion(self.current_pose.orientation)
         heading_error = normalize_angle(desired_yaw - current_yaw)
 
-        # Simple Proportional Controller
+        # Simple p controller
         twist = Twist()
 
         # Angular control
