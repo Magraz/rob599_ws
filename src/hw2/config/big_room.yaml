@@ -1,0 +1,29 @@
+# Waypoint publisher specific parameters
+waypoint_publisher:
+  ros__parameters:
+    frame_id: "map"
+    world_name: "big_room"
+
+    waypoints_x:   [-6.30, -2.46, -1.89,4.65]
+    waypoints_y:   [4.77,  -4.93, 0.23,5.02]
+    waypoints_yaw: [45.00, -6.57, 45.00,-126.89]
+
+    # waypoints_x:   [-10.0, 7.0, 11.00, 15.00]
+    # waypoints_y:   [-1.0,  -2.0, -9.0, -4.00]
+    # waypoints_yaw: [45.00, -6.57, -126.89, -6.57]
+    
+    use_sim_time: True
+
+map_publisher:
+  ros__parameters:
+    ground_truth_topic: "/ground_truth"
+    use_sim_time: True
+
+vfh_follower:
+  ros__parameters:
+    linear_speed: 0.8
+    angular_speed_max: 1.0
+    robot_radius: 0.35
+    safety_radius: 0.45
+    sector_count: 72
+    use_sim_time: True

@@ -2,6 +2,11 @@
 
 This repository the code for assignment 2 of ROB599. I used the VFH algorithm.
 
+## Writeup
+
+The write up is located at:
+
+`HW2_Individual Assignment_Writeup.pdf`
 
 ## Video Demonstration
 
@@ -9,13 +14,9 @@ Video submission can be found at:
 
 `/videos/rob599_hw2.mp4`
 
-To run each world and it's obstacle avoidance run:
-
-``source install/setup.bash``
-
 ## Setup
 
-Make sure place the ``src`` directory into a ros2 kilted workspace, then:
+Make sure to place the ``src`` directory into a ros2 kilted workspace, then:
 
 ```bash
 cd <ROS2_WORKSPACE>

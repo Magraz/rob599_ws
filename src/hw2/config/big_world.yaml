@@ -1,0 +1,25 @@
+# Waypoint publisher specific parameters
+waypoint_publisher:
+  ros__parameters:
+    frame_id: "map"
+    world_name: "big_world"
+
+    waypoints_x:   [-5.14,-0.57,5.03,2.64]
+    waypoints_y:   [-6.93,-1.12,-0.93,5.35]
+    waypoints_yaw: [-86.75, 45.00,113.75,113.75]
+    
+    use_sim_time: True
+
+map_publisher:
+  ros__parameters:
+    ground_truth_topic: "/ground_truth"
+    use_sim_time: True
+
+vfh_follower:
+  ros__parameters:
+    linear_speed: 0.8
+    angular_speed_max: 1.0
+    robot_radius: 0.35
+    safety_radius: 0.45
+    sector_count: 72
+    use_sim_time: True
