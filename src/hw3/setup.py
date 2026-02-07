@@ -33,7 +33,7 @@ setup(
             "waypoint_follower = hw3.waypoint_follower:main",
             "map_publisher = hw3.map_publisher:main",
             "vfh_follower = hw3.vfh_follower:main",
-            "mapper = hw3.mapper:main",
+            "bayesian_mapper = hw3.bayesian_mapper:main",
         ],
     },
 )

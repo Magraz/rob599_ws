@@ -63,6 +63,15 @@ def generate_launch_description():
         # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
+    bayesian_mapper_node = Node(
+        package="hw3",
+        executable="bayesian_mapper",
+        name="bayesian_mapper",
+        parameters=[config_file],
+        output="screen",
+        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
+    )
+
     map_pub_node = Node(
         package="hw3",
         executable="map_publisher",
@@ -85,6 +94,7 @@ def generate_launch_description():
             declare_world_cmd,
             stage_demo,
             map_pub_node,
+            bayesian_mapper_node,
             waypoint_pub_node,
             vfh_follower_node,
             # waypoint_follower_node,

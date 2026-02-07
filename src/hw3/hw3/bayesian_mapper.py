@@ -8,13 +8,15 @@ from geometry_msgs.msg import Pose
 import numpy as np
 import math
 
+from hw3.utils import get_yaw_from_quaternion
+
 
 class BayesianMapper(Node):
     def __init__(self):
         super().__init__("bayesian_mapper")
 
-        self.declare_parameter("width", 20.0)  # meters
-        self.declare_parameter("height", 20.0)  # meters
+        self.declare_parameter("width", 50.0)  # meters
+        self.declare_parameter("height", 50.0)  # meters
         self.declare_parameter("resolution", 0.1)  # meters/cell
 
         self.width_m = self.get_parameter("width").value
@@ -72,11 +74,7 @@ class BayesianMapper(Node):
         orientation = self.current_pose.orientation
 
         # Convert quaternion to yaw
-        siny_cosp = 2 * (orientation.w * orientation.z + orientation.x * orientation.y)
-        cosy_cosp = 1 - 2 * (
-            orientation.y * orientation.y + orientation.z * orientation.z
-        )
-        robot_yaw = math.atan2(siny_cosp, cosy_cosp)
+        robot_yaw = get_yaw_from_quaternion(orientation)
 
         # Robot position in grid coords
         r_c, r_r = self.world_to_grid(px, py)
@@ -203,7 +201,7 @@ class BayesianMapper(Node):
         msg = OccupancyGrid()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = (
-            "map"  # Assuming our grid is attached to 'map' and odom is map-referenced
+            "odom"  # Assuming our grid is attached to 'map' and odom is map-referenced
         )
 
         msg.info.resolution = self.resolution
