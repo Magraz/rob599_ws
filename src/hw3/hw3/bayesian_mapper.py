@@ -17,7 +17,7 @@ class BayesianMapper(Node):
 
         self.declare_parameter("width", 50.0)  # meters
         self.declare_parameter("height", 50.0)  # meters
-        self.declare_parameter("resolution", 0.1)  # meters/cell
+        self.declare_parameter("resolution", 0.05)  # meters/cell
 
         self.width_m = self.get_parameter("width").value
         self.height_m = self.get_parameter("height").value

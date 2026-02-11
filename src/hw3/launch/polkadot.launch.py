@@ -72,10 +72,27 @@ def generate_launch_description():
         # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
+    map_saver_node = Node(
+        package="hw3",
+        executable="map_saver",
+        name="map_saver",
+        parameters=[config_file],
+        output="screen",
+        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
+    )
+
     map_pub_node = Node(
         package="hw3",
         executable="map_publisher",
         name="map_publisher",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    global_planner_node = Node(
+        package="hw3",
+        executable="global_planner",
+        name="global_planner",
         parameters=[config_file],
         output="screen",
     )
@@ -97,6 +114,8 @@ def generate_launch_description():
             bayesian_mapper_node,
             waypoint_pub_node,
             vfh_follower_node,
+            map_saver_node,
+            global_planner_node,
             # waypoint_follower_node,
         ]
     )

@@ -34,6 +34,8 @@ setup(
             "map_publisher = hw3.map_publisher:main",
             "vfh_follower = hw3.vfh_follower:main",
             "bayesian_mapper = hw3.bayesian_mapper:main",
+            "map_saver = hw3.map_saver:main",
+            "global_planner = hw3.global_planner:main",
         ],
     },
 )
