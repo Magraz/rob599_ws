@@ -183,17 +183,6 @@ class BayesianMapper(Node):
             points.append((x, y))
 
         points.append((x1, y1))
-        # Remove duplicates if any (though this loop structure shouldn't produce them except end?)
-        # Actually the loop stops one step before/at target. Check carefully.
-        # The logic `while x != x1` stops before x1. Then we append (x, y) which is the step?
-        # Re-checking standard implementation.
-
-        # Standard implementation creates list.
-        # Let's verify: x0=0, x1=2. dx=2. err=1.
-        # Loop 1: append 0. err-=dy(0). x+=1. x=1.
-        # Loop 2: append 1. x+=1. x=2. Stop.
-        # Append (2, y).
-        # Seems correct.
 
         return points
 
@@ -213,9 +202,6 @@ class BayesianMapper(Node):
         msg.info.origin.orientation.w = 1.0
 
         # Convert log odds to probability
-        # p = 1 - 1 / (1 + exp(l))
-        # map to 0-100
-
         # Use numpy for speed
         exp_l = np.exp(self.l_map)
         probs = 1.0 - 1.0 / (1.0 + exp_l)

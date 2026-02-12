@@ -87,6 +87,30 @@ class MapSaver(Node):
             pil_img = Image.fromarray(img, mode="L")
             pil_img.save(pgm_path)
 
+            # --- PNG (color with light blue unknown) ---
+            white = [254, 254, 254]
+            black = [0, 0, 0]
+            light_blue = [173, 216, 230]
+            img_color = np.full(
+                (height, width, 3), light_blue, dtype=np.uint8
+            )  # default unknown = light blue
+
+            img_color[data == 0] = white  # free -> white
+            img_color[data == 100] = black  # occupied -> black
+            img_color[data == -1] = light_blue  # unknown -> light blue
+
+            # For values between 0 and 100, scale linearly (grayscale)
+            gray = (((100 - data[mask].astype(np.int16)) * 254) // 100).astype(np.uint8)
+            img_color[mask] = np.stack([gray, gray, gray], axis=-1)
+
+            # Flip vertically
+            img_color = np.flipud(img_color)
+
+            # Save PNG
+            png_path = os.path.join(self.output_dir, f"{base_name}.png")
+            pil_img_color = Image.fromarray(img_color, mode="RGB")
+            pil_img_color.save(png_path)
+
             # Save YAML metadata
             yaml_data = {
                 "image": f"{base_name}.pgm",
@@ -105,7 +129,7 @@ class MapSaver(Node):
                 yaml.dump(yaml_data, f, default_flow_style=False)
 
             response.success = True
-            response.message = f"Map saved to {yaml_path} and {pgm_path}"
+            response.message = f"Map saved to {yaml_path}, {pgm_path}, and {png_path}"
             self.get_logger().info(response.message)
 
         except Exception as e:

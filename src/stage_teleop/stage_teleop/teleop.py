@@ -5,7 +5,7 @@ import time
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist, TwistStamped
 
 # Linux terminal raw key reading
 import termios
@@ -20,27 +20,31 @@ def get_key_nonblocking(timeout_s: float = 0.05) -> str:
     dr, _, _ = select.select([sys.stdin], [], [], timeout_s)
     if dr:
         return sys.stdin.read(1)
-    return ''
+    return ""
 
 
 class WASDTeleop(Node):
     def __init__(self):
-        super().__init__('wasd_teleop')
-        self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        super().__init__("wasd_teleop")
+        self.pub = self.create_publisher(TwistStamped, "/cmd_vel", 10)
 
         # Parameters you can override:
-        self.declare_parameter('linear_speed', 0.6)     # m/s
-        self.declare_parameter('angular_speed', 2.0)    # rad/s
-        self.declare_parameter('publish_rate', 20.0)    # Hz
-        self.declare_parameter('hold_timeout', 0.25)    # seconds to keep last cmd if no new key
+        self.declare_parameter("linear_speed", 1.0)  # m/s
+        self.declare_parameter("angular_speed", 2.0)  # rad/s
+        self.declare_parameter("publish_rate", 20.0)  # Hz
+        self.declare_parameter(
+            "hold_timeout", 0.25
+        )  # seconds to keep last cmd if no new key
+        self.declare_parameter("frame_id", "base_link")
 
-        self.linear_speed = float(self.get_parameter('linear_speed').value)
-        self.angular_speed = float(self.get_parameter('angular_speed').value)
-        self.publish_rate = float(self.get_parameter('publish_rate').value)
-        self.hold_timeout = float(self.get_parameter('hold_timeout').value)
+        self.linear_speed = float(self.get_parameter("linear_speed").value)
+        self.angular_speed = float(self.get_parameter("angular_speed").value)
+        self.publish_rate = float(self.get_parameter("publish_rate").value)
+        self.hold_timeout = float(self.get_parameter("hold_timeout").value)
+        self.frame_id = str(self.get_parameter("frame_id").value)
 
         self._lock = threading.Lock()
-        self._last_cmd = Twist()
+        self._last_twist = Twist()
         self._last_cmd_time = time.time()
 
         # Publisher timer
@@ -49,16 +53,16 @@ class WASDTeleop(Node):
 
         self.get_logger().info(
             "WASD teleop started: w/s linear, a/d angular, space stop, q quit.\n"
-            f"Publishing to /cmd_vel @ {self.publish_rate} Hz "
+            f"Publishing TwistStamped to /cmd_vel @ {self.publish_rate} Hz "
             f"(linear_speed={self.linear_speed}, angular_speed={self.angular_speed})."
         )
 
     def set_cmd(self, lin_x: float, ang_z: float):
         with self._lock:
-            msg = Twist()
-            msg.linear.x = lin_x
-            msg.angular.z = ang_z
-            self._last_cmd = msg
+            twist = Twist()
+            twist.linear.x = lin_x
+            twist.angular.z = ang_z
+            self._last_twist = twist
             self._last_cmd_time = time.time()
 
     def stop(self):
@@ -68,10 +72,15 @@ class WASDTeleop(Node):
         # If we haven't received a key recently, publish stop (safety)
         with self._lock:
             age = time.time() - self._last_cmd_time
-            msg = self._last_cmd
+            twist = self._last_twist
 
         if age > self.hold_timeout:
-            msg = Twist()  # zeros
+            twist = Twist()  # zeros
+
+        msg = TwistStamped()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = self.frame_id
+        msg.twist = twist
 
         self.pub.publish(msg)
 
@@ -103,18 +112,18 @@ def main():
             lin = 0.0
             ang = 0.0
 
-            if key == 'w':
+            if key == "w":
                 lin = node.linear_speed
-            elif key == 's':
+            elif key == "s":
                 lin = -node.linear_speed
-            elif key == 'a':
+            elif key == "a":
                 ang = node.angular_speed
-            elif key == 'd':
+            elif key == "d":
                 ang = -node.angular_speed
-            elif key == ' ':
+            elif key == " ":
                 node.stop()
                 continue
-            elif key == 'q':
+            elif key == "q":
                 node.get_logger().info("Quit.")
                 break
             else:
@@ -135,5 +144,5 @@ def main():
         rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
