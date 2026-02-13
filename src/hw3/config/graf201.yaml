@@ -15,6 +15,10 @@ map_publisher:
     ground_truth_topic: "/ground_truth"
     use_sim_time: True
 
+map_loader:
+  ros__parameters:
+    yaml_path: "/home/magraz/rob599_ws/src/hw3/maps/graf201.yaml"
+
 vfh_follower:
   ros__parameters:
     linear_speed: 0.8

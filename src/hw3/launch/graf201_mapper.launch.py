@@ -45,10 +45,10 @@ def generate_launch_description():
         output="screen",
     )
 
-    vfh_follower_node = Node(
+    bayesian_mapper_node = Node(
         package="hw3",
-        executable="vfh_follower",
-        name="vfh_follower",
+        executable="bayesian_mapper",
+        name="bayesian_mapper",
         parameters=[config_file],
         output="screen",
         # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
@@ -84,10 +84,9 @@ def generate_launch_description():
         [
             declare_world_cmd,
             stage_demo,
-            map_saver_node,
             map_pub_node,
+            map_saver_node,
             waypoint_pub_node,
-            vfh_follower_node,
-            # waypoint_follower_node,
+            bayesian_mapper_node,
         ]
     )

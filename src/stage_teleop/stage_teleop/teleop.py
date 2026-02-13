@@ -29,8 +29,8 @@ class WASDTeleop(Node):
         self.pub = self.create_publisher(TwistStamped, "/cmd_vel", 10)
 
         # Parameters you can override:
-        self.declare_parameter("linear_speed", 1.0)  # m/s
-        self.declare_parameter("angular_speed", 2.0)  # rad/s
+        self.declare_parameter("linear_speed", 5.0)  # m/s
+        self.declare_parameter("angular_speed", 3.0)  # rad/s
         self.declare_parameter("publish_rate", 20.0)  # Hz
         self.declare_parameter(
             "hold_timeout", 0.25

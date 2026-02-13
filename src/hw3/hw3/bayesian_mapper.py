@@ -44,9 +44,13 @@ class BayesianMapper(Node):
         self.l_occ = 0.85
         self.l_free = -0.85
 
-        # Max/Min log odds to prevent saturation issues (optional)
+        # Max/Min log odds to prevent saturation issues
         self.l_max = 5.0
         self.l_min = -5.0
+
+        # Occupancy protection: after n occupied updates, freeze the cell
+        self.occ_hit_count = np.zeros((self.rows, self.cols), dtype=np.int16)
+        self.occ_protect_thresh = 10  # number of occupied updates before cell is frozen
 
         self.current_pose = None
 
@@ -82,14 +86,6 @@ class BayesianMapper(Node):
         # Process each ray
         angle = msg.angle_min
 
-        updates = {}  # Store updates in a dict to handle overlaps?
-        # Or just apply sequentially. Sequential is fine but order matters if multiple rays hit same cell.
-        # But usually we process ranges independently.
-        # Actually, standard occupancy grid mapping often computes update per ray.
-
-        # To avoid re-calculating cells multiple times for one scan (if rays overlap heavily near robot),
-        # we can collect them. But simple implementation is per ray.
-
         for r in msg.ranges:
 
             # Skip invalid ranges
@@ -97,22 +93,15 @@ class BayesianMapper(Node):
                 angle += msg.angle_increment
                 continue
 
-            # Check range limits
-            if r > msg.range_max:
-                # Treat as free up to max? or just skip?
-                # Usually max range means free up to max.
-                # But let's stick to valid hits for simplicity, or clamp.
-                # If r is inf/max, it means empty space.
-                pass
-
             # If r < range_min, ignore
             if r < msg.range_min:
                 angle += msg.angle_increment
                 continue
 
-            # Calculate hit point
-            # Current ray angle in world frame
-            # Assuming laser is at robot base (no offset)
+            # Determine if this is a max-range (no hit) reading
+            is_max_range = r >= msg.range_max
+
+            # Calculate endpoint
             ray_angle = robot_yaw + angle
 
             hx = px + r * math.cos(ray_angle)
@@ -123,16 +112,35 @@ class BayesianMapper(Node):
             # Raytrace
             cells = self.bresenham(r_c, r_r, h_c, h_r)
 
-            for c, r_idx in cells[:-1]:
-                if self.is_valid_index(c, r_idx):
-                    self.l_map[r_idx, c] += self.l_free
-                    self.visited[r_idx, c] = True
+            if is_max_range:
+                # No obstacle detected — mark ALL cells as free
+                for c, r_idx in cells:
+                    if self.is_valid_index(c, r_idx):
+                        # Skip frozen cells
+                        if self.occ_hit_count[r_idx, c] >= self.occ_protect_thresh:
+                            continue
+                        self.l_map[r_idx, c] += self.l_free
+                        self.visited[r_idx, c] = True
+            else:
+                # Valid hit — free cells along the ray, occupied at the endpoint
+                for c, r_idx in cells[:-1]:
+                    if self.is_valid_index(c, r_idx):
+                        # Skip frozen cells
+                        if self.occ_hit_count[r_idx, c] >= self.occ_protect_thresh:
+                            continue
+                        self.l_map[r_idx, c] += self.l_free
+                        # Reset occupied counter if cell is getting free updates
+                        if self.occ_hit_count[r_idx, c] > 0:
+                            self.occ_hit_count[r_idx, c] -= 1
+                        self.visited[r_idx, c] = True
 
-            # Last cell is occupied
-            last_c, last_r = cells[-1]
-            if self.is_valid_index(last_c, last_r):
-                self.l_map[last_r, last_c] += self.l_occ
-                self.visited[last_r, last_c] = True
+                last_c, last_r = cells[-1]
+                if self.is_valid_index(last_c, last_r):
+                    # Skip frozen cells
+                    if self.occ_hit_count[last_r, last_c] < self.occ_protect_thresh:
+                        self.l_map[last_r, last_c] += self.l_occ
+                        self.occ_hit_count[last_r, last_c] += 1
+                    self.visited[last_r, last_c] = True
 
             angle += msg.angle_increment
 
@@ -170,7 +178,6 @@ class BayesianMapper(Node):
                     y += sy
                     err += dx
                 x += sx
-            points.append((x, y))
         else:
             err = dy / 2.0
             while y != y1:
@@ -180,7 +187,6 @@ class BayesianMapper(Node):
                     x += sx
                     err += dy
                 y += sy
-            points.append((x, y))
 
         points.append((x1, y1))
 
@@ -208,10 +214,6 @@ class BayesianMapper(Node):
 
         # Scale to 0-100
         grid_data = (probs * 100).astype(np.int8)
-
-        # Apply visited mask (Extra Credit)
-        # Note: -1 is int8 255 or -1? In python bytes/int8 list, usually -1 is fine.
-        # ROS message data is int8[].
 
         # Where not visited, set to -1
         grid_data[~self.visited] = -1

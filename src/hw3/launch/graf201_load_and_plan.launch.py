@@ -36,24 +36,6 @@ def generate_launch_description():
         description="World to load in stage (from config or override)",
     )
 
-    # Waypoint publisher node with shared config
-    waypoint_pub_node = Node(
-        package="hw3",
-        executable="waypoint_publisher",
-        name="waypoint_publisher",
-        parameters=[config_file],
-        output="screen",
-    )
-
-    vfh_follower_node = Node(
-        package="hw3",
-        executable="vfh_follower",
-        name="vfh_follower",
-        parameters=[config_file],
-        output="screen",
-        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
-    )
-
     map_pub_node = Node(
         package="hw3",
         executable="map_publisher",
@@ -62,13 +44,21 @@ def generate_launch_description():
         output="screen",
     )
 
-    map_saver_node = Node(
+    map_loader_node = Node(
         package="hw3",
-        executable="map_saver",
-        name="map_saver",
+        executable="map_loader",
+        name="map_loader",
         parameters=[config_file],
         output="screen",
         # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
+    )
+
+    global_planner_node = Node(
+        package="hw3",
+        executable="global_planner",
+        name="global_planner",
+        parameters=[config_file],
+        output="screen",
     )
 
     # Include stage_ros2 demo launch file
@@ -84,10 +74,8 @@ def generate_launch_description():
         [
             declare_world_cmd,
             stage_demo,
-            map_saver_node,
             map_pub_node,
-            waypoint_pub_node,
-            vfh_follower_node,
-            # waypoint_follower_node,
+            map_loader_node,
+            global_planner_node,
         ]
     )
