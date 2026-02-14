@@ -30,29 +30,38 @@ class MapPublisher(Node):
     def ground_truth_callback(self, msg):
         """Initialize map <-> odom transform based on start pose"""
         if not self.map_initialized:
+            # map -> odom transform (existing)
             t = TransformStamped()
-
-            # Use current time
             t.header.stamp.sec = 0
             t.header.stamp.nanosec = 0
             t.header.frame_id = "map"
             t.child_frame_id = "odom"
-
-            # The transform from map to odom is effectively the initial ground truth pose
-            # because odom starts at (0,0) relative to its own frame.
             t.transform.translation.x = msg.pose.pose.position.x
             t.transform.translation.y = msg.pose.pose.position.y
             t.transform.translation.z = msg.pose.pose.position.z
             t.transform.rotation = msg.pose.pose.orientation
 
-            self.tf_broadcaster.sendTransform(t)
+            # world -> map identity transform
+            t2 = TransformStamped()
+            t2.header.stamp.sec = 0
+            t2.header.stamp.nanosec = 0
+            t2.header.frame_id = "world"
+            t2.child_frame_id = "map"
+            t2.transform.translation.x = 0.0
+            t2.transform.translation.y = 0.0
+            t2.transform.translation.z = 0.0
+            t2.transform.rotation.x = 0.0
+            t2.transform.rotation.y = 0.0
+            t2.transform.rotation.z = 0.0
+            t2.transform.rotation.w = 1.0
+
+            self.tf_broadcaster.sendTransform([t, t2])
             self.map_initialized = True
 
             self.get_logger().info(
                 f"Initialized map frame at {t.transform.translation.x:.2f}, {t.transform.translation.y:.2f}"
             )
 
-            # Unsubscribe after initialization so that the tf is static
             self.destroy_subscription(self.ground_truth_sub)
 
 

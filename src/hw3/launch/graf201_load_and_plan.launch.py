@@ -10,6 +10,7 @@ from launch.actions import (
     IncludeLaunchDescription,
     DeclareLaunchArgument,
 )
+from launch_ros.actions import Node as LaunchNode
 from launch_ros.actions import Node
 import yaml
 
@@ -24,15 +25,13 @@ def generate_launch_description():
     config_file = os.path.join(package_dir, "config", "graf201.yaml")
 
     # Load YAML config to extract world_name
-    with open(config_file, "r") as f:
-        config = yaml.safe_load(f)
-        world_from_yaml = config["waypoint_publisher"]["ros__parameters"]["world_name"]
+    world_name = "graf201"
 
     # World can be overridden from command line, but defaults to YAML value
     world = LaunchConfiguration("world")
     declare_world_cmd = DeclareLaunchArgument(
         "world",
-        default_value=world_from_yaml,
+        default_value=world_name,
         description="World to load in stage (from config or override)",
     )
 
@@ -50,7 +49,6 @@ def generate_launch_description():
         name="map_loader",
         parameters=[config_file],
         output="screen",
-        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
     global_planner_node = Node(
@@ -61,7 +59,22 @@ def generate_launch_description():
         output="screen",
     )
 
-    # Include stage_ros2 demo launch file
+    path_2_waypoints_node = Node(
+        package="hw3",
+        executable="path_2_waypoints",
+        name="path_2_waypoints",
+        parameters=[config_file],
+        output="screen",
+    )
+
+    vfh_follower_node = Node(
+        package="hw3",
+        executable="vfh_follower",
+        name="vfh_follower",
+        parameters=[config_file],
+        output="screen",
+    )
+
     stage_demo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(stage_launch_dir, "demo.launch.py")),
         launch_arguments={
@@ -70,12 +83,21 @@ def generate_launch_description():
         }.items(),
     )
 
+    LaunchNode(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        arguments=["0", "0", "0", "0", "0", "0", "world", "odom"],
+        name="world_to_odom_tf",
+    ),
+
     return LaunchDescription(
         [
             declare_world_cmd,
             stage_demo,
             map_pub_node,
             map_loader_node,
+            vfh_follower_node,
             global_planner_node,
+            path_2_waypoints_node,
         ]
     )

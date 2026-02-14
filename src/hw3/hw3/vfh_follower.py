@@ -6,10 +6,12 @@ from rclpy.node import Node
 from geometry_msgs.msg import TwistStamped, PoseArray, Point
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
-from std_srvs.srv import SetBool
+from std_srvs.srv import Trigger
 from visualization_msgs.msg import Marker, MarkerArray
-from geometry_msgs.msg import Twist, PoseArray, Point
+from geometry_msgs.msg import TwistStamped, PoseArray, Point, PoseStamped
 from rclpy.qos import QoSProfile, QoSDurabilityPolicy, QoSReliabilityPolicy
+from tf2_geometry_msgs import do_transform_pose_stamped
+from tf2_ros import Buffer, TransformListener
 
 from hw3.utils import get_yaw_from_quaternion, normalize_angle
 
@@ -21,7 +23,7 @@ class VFHFollower(Node):
         # Parameters
         self.declare_parameter("linear_speed", 0.4)
         self.declare_parameter("angular_speed_max", 1.0)
-        self.declare_parameter("goal_tolerance", 0.2)
+        self.declare_parameter("goal_tolerance", 0.5)
         self.declare_parameter("robot_radius", 0.5)
         self.declare_parameter("safety_radius", 0.5)
         self.declare_parameter("sector_count", 72)
@@ -70,6 +72,13 @@ class VFHFollower(Node):
         self.last_progress_time = 0.0
         self.recovery_until = 0.0
 
+        # TF2 for frame transformations
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        # Store the frame the waypoints arrived in
+        self.waypoints_frame = "map"
+
         # Subscribers
         self.odom_sub = self.create_subscription(
             Odometry, ground_truth_topic, self.odom_callback, 10
@@ -94,7 +103,7 @@ class VFHFollower(Node):
 
         # Service
         self.srv = self.create_service(
-            SetBool, "start_vfh_follower", self.start_follower_callback
+            Trigger, "start_vfh_follower", self.start_follower_callback
         )
 
         # Publishercurrent_waypoint_index
@@ -113,7 +122,7 @@ class VFHFollower(Node):
         self._log_finished = False
 
     def start_follower_callback(self, request, response):
-        self.active = request.data
+        self.active = not self.active
         response.success = True
         response.message = (
             "VFH follower started." if self.active else "VFH follower stopped."
@@ -124,15 +133,28 @@ class VFHFollower(Node):
         return response
 
     def waypoints_callback(self, msg):
-        if not self.goal_received:
-            self.waypoints = msg.poses
-            self.current_waypoint_index = 0
-            self.goal_received = True
-            self.finished = False
-            self.get_logger().info(f"Received {len(self.waypoints)} waypoints.")
+        self.waypoints = msg.poses
+        self.waypoints_frame = msg.header.frame_id or "map"
+        self.current_waypoint_index = 0
+        self.goal_received = True
+        self.finished = False
+        self._log_finished = False
+
+        # Reset stuck detection
+        self.last_progress_pose = None
+        self.last_progress_time = 0.0
+        self.recovery_until = 0.0
+        self.prev_steer_angle = 0.0
+
+        self.get_logger().info(
+            f"Received {len(self.waypoints)} waypoints in frame '{self.waypoints_frame}'. "
+            f"First: ({self.waypoints[0].position.x:.2f}, {self.waypoints[0].position.y:.2f}), "
+            f"Last: ({self.waypoints[-1].position.x:.2f}, {self.waypoints[-1].position.y:.2f})"
+        )
 
     def odom_callback(self, msg):
         self.current_pose = msg.pose.pose
+        self.odom_frame = msg.header.frame_id or "odom"
 
     def scan_callback(self, msg):
         self.current_scan = msg
@@ -144,6 +166,30 @@ class VFHFollower(Node):
         msg.twist.linear.x = 0.0
         msg.twist.angular.z = 0.0
         self.cmd_vel_pub.publish(msg)
+
+    def transform_waypoint_to_odom(self, pose):
+        """Transform a waypoint pose from waypoints_frame to the ground truth frame."""
+        target_frame = getattr(self, "odom_frame", "odom")
+
+        if self.waypoints_frame == target_frame:
+            return pose  # No transform needed
+
+        try:
+            transform = self.tf_buffer.lookup_transform(
+                target_frame, self.waypoints_frame, rclpy.time.Time()
+            )
+            pose_stamped = PoseStamped()
+            pose_stamped.header.frame_id = self.waypoints_frame
+            pose_stamped.pose = pose
+            transformed = do_transform_pose_stamped(pose_stamped, transform)
+            return transformed.pose
+        except Exception as e:
+            self.get_logger().warn(
+                f"Could not transform waypoint from '{self.waypoints_frame}' to '{target_frame}': {e}. "
+                f"Using raw waypoint.",
+                throttle_duration_sec=5.0,
+            )
+            return pose
 
     def control_loop(self):
         # if not self.active or not self.goal_received or self.finished:
@@ -201,19 +247,25 @@ class VFHFollower(Node):
             ) > self.stuck_timeout and now_sec > self.recovery_until:
                 self.recovery_until = now_sec + self.recovery_duration
 
-        target_pose = self.waypoints[self.current_waypoint_index]
+        target_pose_raw = self.waypoints[self.current_waypoint_index]
+        target_pose = self.transform_waypoint_to_odom(target_pose_raw)
         dx = target_pose.position.x - self.current_pose.position.x
         dy = target_pose.position.y - self.current_pose.position.y
         dist_to_goal = math.sqrt(dx**2 + dy**2)
 
         if dist_to_goal < self.goal_tolerance:
+            self.get_logger().info(
+                f"Reached waypoint {self.current_waypoint_index} "
+                f"({target_pose_raw.position.x:.2f}, {target_pose_raw.position.y:.2f})"
+            )
             self.current_waypoint_index += 1
             if self.current_waypoint_index >= len(self.waypoints):
                 self.finished = True
                 self.stop_robot()
                 self.get_logger().info("All waypoints finished.")
                 return
-            target_pose = self.waypoints[self.current_waypoint_index]
+            target_pose_raw = self.waypoints[self.current_waypoint_index]
+            target_pose = self.transform_waypoint_to_odom(target_pose_raw)
             dx = target_pose.position.x - self.current_pose.position.x
             dy = target_pose.position.y - self.current_pose.position.y
 

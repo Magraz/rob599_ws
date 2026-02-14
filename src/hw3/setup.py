@@ -37,6 +37,7 @@ setup(
             "map_saver = hw3.map_saver:main",
             "global_planner = hw3.global_planner:main",
             "map_loader = hw3.map_loader:main",
+            "path_2_waypoints = hw3.path_2_waypoints:main",
         ],
     },
 )
