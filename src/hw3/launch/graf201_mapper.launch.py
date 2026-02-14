@@ -23,26 +23,14 @@ def generate_launch_description():
     package_dir = get_package_share_directory("hw3")
     config_file = os.path.join(package_dir, "config", "graf201.yaml")
 
-    # Load YAML config to extract world_name
-    with open(config_file, "r") as f:
-        config = yaml.safe_load(f)
-        world_from_yaml = config["waypoint_publisher"]["ros__parameters"]["world_name"]
+    world_name = "graf201"
 
     # World can be overridden from command line, but defaults to YAML value
     world = LaunchConfiguration("world")
     declare_world_cmd = DeclareLaunchArgument(
         "world",
-        default_value=world_from_yaml,
+        default_value=world_name,
         description="World to load in stage (from config or override)",
-    )
-
-    # Waypoint publisher node with shared config
-    waypoint_pub_node = Node(
-        package="hw3",
-        executable="waypoint_publisher",
-        name="waypoint_publisher",
-        parameters=[config_file],
-        output="screen",
     )
 
     bayesian_mapper_node = Node(
@@ -51,7 +39,6 @@ def generate_launch_description():
         name="bayesian_mapper",
         parameters=[config_file],
         output="screen",
-        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
     map_pub_node = Node(
@@ -68,7 +55,6 @@ def generate_launch_description():
         name="map_saver",
         parameters=[config_file],
         output="screen",
-        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
     )
 
     # Include stage_ros2 demo launch file
@@ -86,7 +72,6 @@ def generate_launch_description():
             stage_demo,
             map_pub_node,
             map_saver_node,
-            waypoint_pub_node,
             bayesian_mapper_node,
         ]
     )

@@ -21,27 +21,20 @@ def generate_launch_description():
     config_file = os.path.join(package_dir, "config", "turtlebot.yaml")
     rviz_config = os.path.join(package_dir, "config", "turtlebot.rviz")
 
-    # Waypoint publisher node with shared config
-    waypoint_pub_node = Node(
+    bayesian_mapper_node = Node(
         package="hw3",
-        executable="waypoint_publisher",
-        name="waypoint_publisher",
+        executable="bayesian_mapper",
+        name="bayesian_mapper",
         parameters=[config_file],
         output="screen",
     )
 
-    vfh_follower_node = Node(
+    map_saver_node = Node(
         package="hw3",
-        executable="vfh_follower",
-        name="vfh_follower",
+        executable="map_saver",
+        name="map_saver",
         parameters=[config_file],
         output="screen",
-        # prefix=["python3 -m debugpy --listen 5678 --wait-for-client"],
-    )
-
-    vfh_delayed = TimerAction(
-        period=5.0,
-        actions=[vfh_follower_node],
     )
 
     rviz_node = Node(
@@ -54,8 +47,8 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            waypoint_pub_node,
             rviz_node,
-            vfh_delayed,
+            bayesian_mapper_node,
+            map_saver_node,
         ]
     )
