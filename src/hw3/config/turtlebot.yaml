@@ -1,27 +1,25 @@
-# Waypoint publisher specific parameters
-waypoint_publisher:
+bayesian_mapper:
   ros__parameters:
-    frame_id: "odom"
-    # waypoints_x:   [-3.78, -2.03, 0.78,   3.08,   5.30]
-    # waypoints_y:   [2.00,  -2.08, 2.54,   -2.6,   2.13]
-    # waypoints_yaw: [45.0,  39.29, -43.81, -20.89, 125.21]
-
-    waypoints_x:   [0.6,  2.00]
-    waypoints_y:   [0.00,  0.00]
-    waypoints_yaw: [45.0,  -2.74]
+    width: 50.0
+    height: 50.0
+    resoulution: 0.05
+    laser_scan_topic: "/scan"
     use_sim_time: False
-
-# map_publisher:
-#   ros__parameters:
-#     ground_truth_topic: "/odom"
-#     use_sim_time: False
 
 vfh_follower:
   ros__parameters:
-    linear_speed: 0.20
+    linear_speed: 0.2
     angular_speed_max: 1.0
     robot_radius: 0.25
     safety_radius: 0.25
+    goal_tolerance: 0.2
+    w_goal: 1.0
+    w_smooth: 0.3
+    w_clear: 0.5
     ground_truth_topic: "/odom"
     laser_scan_topic: "/scan"
     use_sim_time: False
+  
+map_loader:
+  ros__parameters:
+    yaml_path: "/home/magraz/rob599_ws/src/hw3/maps/office.yaml"
