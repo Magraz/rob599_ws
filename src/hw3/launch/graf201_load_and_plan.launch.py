@@ -69,8 +69,8 @@ def generate_launch_description():
 
     vfh_follower_node = Node(
         package="hw3",
-        executable="vfh_follower",
-        name="vfh_follower",
+        executable="vfh_follower_stage",
+        name="vfh_follower_stage",
         parameters=[config_file],
         output="screen",
     )

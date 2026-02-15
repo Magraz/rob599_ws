@@ -21,14 +21,6 @@ def generate_launch_description():
     config_file = os.path.join(package_dir, "config", "turtlebot.yaml")
     rviz_config = os.path.join(package_dir, "config", "turtlebot.rviz")
 
-    map_loader_node = Node(
-        package="hw3",
-        executable="map_loader",
-        name="map_loader",
-        parameters=[config_file],
-        output="screen",
-    )
-
     global_planner_node = Node(
         package="hw3",
         executable="global_planner",
@@ -45,17 +37,25 @@ def generate_launch_description():
         output="screen",
     )
 
-    vfh_delayed = TimerAction(
-        period=3.0,
-        actions=[vfh_follower_node],
+    map_loader_node = Node(
+        package="hw3",
+        executable="map_loader",
+        name="map_loader",
+        parameters=[config_file],
+        output="screen",
     )
 
     vfh_follower_node = Node(
         package="hw3",
-        executable="vfh_follower",
-        name="vfh_follower",
+        executable="vfh_follower_turtlebot",
+        name="vfh_follower_turtlebot",
         parameters=[config_file],
         output="screen",
+    )
+
+    vfh_delayed = TimerAction(
+        period=2.0,
+        actions=[vfh_follower_node],
     )
 
     rviz_node = Node(

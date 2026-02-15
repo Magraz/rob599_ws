@@ -9,7 +9,7 @@ from PIL import Image
 from nav_msgs.msg import OccupancyGrid
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, QoSDurabilityPolicy
-from tf2_ros import Buffer, TransformListener
+from std_srvs.srv import Trigger
 
 
 class MapLoader(Node):
@@ -25,14 +25,6 @@ class MapLoader(Node):
         self.frame_id = str(self.get_parameter("frame_id").value)
         self.publish_rate = float(self.get_parameter("publish_rate").value)
 
-        if not self.yaml_path:
-            self.get_logger().error("No yaml_path parameter provided. Shutting down.")
-            raise SystemExit("yaml_path is required")
-
-        # TF2 listener to get the map frame origin
-        self.tf_buffer = Buffer()
-        self.tf_listener = TransformListener(self.tf_buffer, self)
-
         # Use transient local durability so late subscribers get the map
         qos = QoSProfile(
             depth=1,
@@ -41,60 +33,45 @@ class MapLoader(Node):
         self.pub_map = self.create_publisher(OccupancyGrid, "/map", qos)
 
         self.occupancy_grid = None
-        self.map_published = False
+        self.pub_timer = None
 
-        # Wait for the TF to become available, then load and publish
-        self.init_timer = self.create_timer(0.5, self._wait_for_tf)
-
-        self.get_logger().info("Map Loader initialized. Waiting for /map TF frame...")
-
-    def _wait_for_tf(self):
-        """Poll until the map frame transform is available."""
-        try:
-            # Look up map frame origin in world (identity, but gives us the frame exists)
-            t = self.tf_buffer.lookup_transform("map", "odom", rclpy.time.Time())
-        except Exception:
-            self.get_logger().info(
-                "Waiting for map -> odom transform...", throttle_duration_sec=5.0
-            )
-            return
-
-        # Got the transform — extract the map frame origin
-        map_origin_x = t.transform.translation.x
-        map_origin_y = t.transform.translation.y
-        map_origin_yaw = 2.0 * np.arctan2(
-            t.transform.rotation.z, t.transform.rotation.w
-        )
+        # Service to load (or reload) the map
+        self.load_srv = self.create_service(Trigger, "load_map", self.load_map_callback)
 
         self.get_logger().info(
-            f"Got map frame origin: ({map_origin_x:.2f}, {map_origin_y:.2f}, yaw={map_origin_yaw:.3f})"
+            "Map Loader initialized. Call 'load_map' service to load the map."
         )
 
-        # Stop polling
-        self.init_timer.cancel()
+    def load_map_callback(self, request, response):
+        """Service callback to load (or reload) the map from the yaml_path parameter."""
+        yaml_path = str(self.get_parameter("yaml_path").value)
 
-        # Load the map image and metadata
-        self.occupancy_grid = self._load_map(
-            self.yaml_path, map_origin_x, map_origin_y, map_origin_yaw
-        )
+        if not yaml_path:
+            response.success = False
+            response.message = "No yaml_path parameter set."
+            self.get_logger().error(response.message)
+            return response
 
-        # Publish once immediately
-        self._publish_map()
+        try:
+            self.occupancy_grid = self._load_map(yaml_path)
+            self._publish_map()
 
-        # Optionally keep republishing
-        if self.publish_rate > 0.0:
-            period = 1.0 / self.publish_rate
-            self.pub_timer = self.create_timer(period, self._publish_map)
+            # Start periodic republishing if not already running
+            if self.pub_timer is None and self.publish_rate > 0.0:
+                period = 1.0 / self.publish_rate
+                self.pub_timer = self.create_timer(period, self._publish_map)
 
-        self.get_logger().info("Map loaded and published successfully.")
+            response.success = True
+            response.message = f"Map loaded from {yaml_path}"
+            self.get_logger().info(response.message)
+        except Exception as e:
+            response.success = False
+            response.message = f"Failed to load map: {e}"
+            self.get_logger().error(response.message)
 
-    def _load_map(
-        self,
-        yaml_path: str,
-        map_origin_x: float,
-        map_origin_y: float,
-        map_origin_yaw: float,
-    ) -> OccupancyGrid:
+        return response
+
+    def _load_map(self, yaml_path: str) -> OccupancyGrid:
         """Load a map YAML + image file and return an OccupancyGrid message."""
 
         # --- Parse YAML ---
@@ -138,12 +115,10 @@ class MapLoader(Node):
         grid_data[flat_occ >= occupied_thresh] = 100
         grid_data[flat_occ <= free_thresh] = 0
 
-        # No TF needed — just use the YAML origin directly
+        # Use the YAML origin directly (map was built in the odom frame)
         grid_origin_x = float(origin[0])
         grid_origin_y = float(origin[1])
         grid_origin_yaw = float(origin[2]) if len(origin) >= 3 else 0.0
-        if len(origin) >= 3:
-            grid_origin_yaw += float(origin[2])
 
         # --- Build OccupancyGrid message ---
         msg = OccupancyGrid()

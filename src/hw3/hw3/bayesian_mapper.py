@@ -4,9 +4,8 @@ import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import OccupancyGrid, Odometry
 from sensor_msgs.msg import LaserScan
-from geometry_msgs.msg import Pose
+from std_srvs.srv import Empty
 import numpy as np
-import math
 import time
 
 from hw3.utils import get_yaw_from_quaternion
@@ -52,10 +51,6 @@ class BayesianMapper(Node):
         self.l_max = np.float32(5.0)
         self.l_min = np.float32(-5.0)
 
-        # Occupancy protection: after n occupied updates, freeze the cell
-        self.occ_hit_count = np.zeros((self.rows, self.cols), dtype=np.int16)
-        self.occ_protect_thresh = 10
-
         self.current_pose = None
         self.last_publish_time = 0.0
 
@@ -68,10 +63,22 @@ class BayesianMapper(Node):
 
         self.pub_map = self.create_publisher(OccupancyGrid, "/map", 1)
 
+        # Service to reset the map
+        self.reset_srv = self.create_service(
+            Empty, "reset_map", self.reset_map_callback
+        )
+
         # Pre-compute inverse resolution
         self.inv_resolution = 1.0 / self.resolution
 
         self.get_logger().info("Bayesian Mapper Initialized")
+
+    def reset_map_callback(self, request, response):
+        self.l_map.fill(0.0)
+        self.visited.fill(False)
+        self.get_logger().info("Map has been reset")
+        self.publish_map()
+        return response
 
     def odom_callback(self, msg):
         self.current_pose = msg.pose.pose
@@ -122,8 +129,6 @@ class BayesianMapper(Node):
         h_r = ((hy - self.origin_y) * self.inv_resolution).astype(int)
 
         # Process each ray using fast bresenham
-        frozen = self.occ_hit_count >= self.occ_protect_thresh
-
         for i in range(len(ranges)):
             cells = self._bresenham_fast(r_c, r_r, h_c[i], h_r[i])
             if len(cells) == 0:
@@ -144,9 +149,6 @@ class BayesianMapper(Node):
                 # All cells are free
                 vc = cols_arr[mask]
                 vr = rows_arr[mask]
-                not_frozen = ~frozen[vr, vc]
-                vc = vc[not_frozen]
-                vr = vr[not_frozen]
                 self.l_map[vr, vc] += self.l_free
                 self.visited[vr, vc] = True
             else:
@@ -155,21 +157,13 @@ class BayesianMapper(Node):
                     free_mask = mask[:-1]
                     fc = cols_arr[:-1][free_mask]
                     fr = rows_arr[:-1][free_mask]
-                    not_frozen_free = ~frozen[fr, fc]
-                    fc = fc[not_frozen_free]
-                    fr = fr[not_frozen_free]
                     self.l_map[fr, fc] += self.l_free
-                    # Decrement occ counter for free updates
-                    dec_mask = self.occ_hit_count[fr, fc] > 0
-                    self.occ_hit_count[fr[dec_mask], fc[dec_mask]] -= 1
                     self.visited[fr, fc] = True
 
                 # Occupied cell (last)
                 lc, lr = cols_arr[-1], rows_arr[-1]
                 if mask[-1]:
-                    if not frozen[lr, lc]:
-                        self.l_map[lr, lc] += self.l_occ
-                        self.occ_hit_count[lr, lc] += 1
+                    self.l_map[lr, lc] += self.l_occ
                     self.visited[lr, lc] = True
 
         # Clamp values
