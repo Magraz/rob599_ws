@@ -62,7 +62,7 @@ The write up is located at:
 
 `~/rob599_ws/writeups/HW3_Individual Assignment_Writeup.pdf`
 
-## Video Demonstration
+## Video demonstration
 
 Video submission can be found at:
 
@@ -78,9 +78,9 @@ colcon build
 source install/setup.bash
 ```
 
-## Running the Simulations
+## Running the simulations
 
-### Graf201 World
+### Mapping
 
 Run mapper launch file and teleop node. Move the robot around to see the map update in rviz:
 
@@ -96,7 +96,7 @@ Once done mapping call the /save_map service to save the map:
 ros2 service call /save_map std_srvs/srv/Trigger
 ```
 
-### Graf201 World
+### Planning and following path
 
 Rename the saved map and all related files (pgm, png, yaml) to "graf201". Then run the launch file:
 
@@ -104,13 +104,19 @@ Rename the saved map and all related files (pgm, png, yaml) to "graf201". Then r
 ros2 launch hw3 graf201_load_and_plan.launch.py
 ```
 
-Once RVIZ loads up select a pose using RVIZ's 2D Goal Pose to set a goal to plan a path for. Then call the planning service:
+Then load the map:
+
+```bash
+ros2 service call /load_map std_srvs/srv/Trigger
+```
+
+Once RVIZ loads up the map select a pose using RVIZ's 2D Goal Pose to set a goal to plan a path for. Then call the planning service:
 
 ```bash
 ros2 service call /plan_path std_srvs/srv/Trigger
 ```
 
-The path will be visualized in RVIZ marked by blue arrows. An image of the path will also be save to the `~/robws_599/hw3/maps/planned_path.png` file. Finally to follow the path run the waypoint follower service:
+The path will be visualized in RVIZ marked by blue arrows. An image of the path will also be save to the `~/robws_599/src/hw3/maps/planned_path.png` file. Finally to follow the path run the waypoint follower service:
 
 ```bash
 ros2 service call /start_vfh_follower std_srvs/srv/Trigger
