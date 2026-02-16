@@ -60,7 +60,7 @@ This repository the code for assignment 3 of ROB599.
 
 The write up is located at:
 
-`~/rob599_ws/writeups/HW3_Individual Assignment_Writeup.pdf`
+`~/rob599_ws/writeups/HW3_Individual_Assignment_Writeup.pdf`
 
 ## Video demonstration
 
