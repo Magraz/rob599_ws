@@ -265,7 +265,7 @@ class GlobalPlanner(Node):
         self.pub_path.publish(path_msg)
 
         # Save path overlayed on map as PNG
-        output_dir = os.path.expanduser("~/rob599_ws/maps")
+        output_dir = os.path.expanduser("~/rob599_ws/src/hw3/maps")
         os.makedirs(output_dir, exist_ok=True)
         self.save_path_image(path_cells, os.path.join(output_dir, "planned_path.png"))
 
