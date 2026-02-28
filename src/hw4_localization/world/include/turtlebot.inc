@@ -1,0 +1,43 @@
+# TurtleBot3 Burger robot definition for Stage
+
+define turtlebot3_base position
+(
+  color "blue"
+  drive "diff"
+  gui_nose 1
+  obstacle_return 1
+  ranger_return 0.5
+  blob_return 1
+  fiducial_return 1
+
+  localization "odom"
+  # Reduced odometry noise for more stable SLAM in Stage.
+  odom_error [ 0.001 0.001 0.0 0.01 ]
+
+  # four DOF kinematics limits
+  # [ xmin xmax ymin ymax zmin zmax amin amax ]
+  velocity_bounds [-0.22 0.22 0 0 0 0 -162.6 162.6]  # -/+0.22 m/s, -/+2.84 rad/s (deg)
+  acceleration_bounds [-0.5 0.5 0 0 0 0 -162.6 162.6]
+
+  # actual size
+  size [0.356 0.276 0.384]  # length, width, height
+
+  # center of rotation at geometric center
+  origin [0 0 0 0]
+
+  # estimated mass in KG
+  mass 1.0
+)
+
+define turtlebot3_burger turtlebot3_base
+(
+  # simplified Body shape:
+  block(
+    points 4
+    point[0] [-0.178 0.138]
+    point[1] [-0.178 -0.138]
+    point[2] [0.178 -0.138]
+    point[3] [0.178 0.138]
+    z [0 0.384]
+  )
+)

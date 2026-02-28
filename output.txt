@@ -1,0 +1,625 @@
+[INFO] [launch]: All log files can be found below /home/magraz/.ros/log/2026-02-27-18-12-14-235716-aadi-agrazvam-84660
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rviz2-1]: process started with pid [84689]
+[INFO] [stage_ros2-2]: process started with pid [84690]
+[INFO] [map_saver_server-3]: process started with pid [84691]
+[INFO] [lifecycle_manager-4]: process started with pid [84692]
+[INFO] [sync_slam_toolbox_node-5]: process started with pid [84693]
+[INFO] [controller_server-6]: process started with pid [84694]
+[INFO] [smoother_server-7]: process started with pid [84695]
+[INFO] [planner_server-8]: process started with pid [84696]
+[INFO] [route_server-9]: process started with pid [84697]
+[INFO] [behavior_server-10]: process started with pid [84698]
+[INFO] [bt_navigator-11]: process started with pid [84699]
+[INFO] [waypoint_follower-12]: process started with pid [84700]
+[INFO] [velocity_smoother-13]: process started with pid [84701]
+[INFO] [collision_monitor-14]: process started with pid [84702]
+[INFO] [opennav_docking-15]: process started with pid [84703]
+[INFO] [lifecycle_manager-16]: process started with pid [84860]
+[bt_navigator-11] [INFO] [1772244734.435401442] [bt_navigator]: 
+[bt_navigator-11] 	bt_navigator lifecycle node launched. 
+[bt_navigator-11] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-11] [INFO] [1772244734.436428527] [bt_navigator]: Creating
+[opennav_docking-15] [INFO] [1772244734.439374466] [docking_server]: 
+[opennav_docking-15] 	docking_server lifecycle node launched. 
+[opennav_docking-15] 	Waiting on external lifecycle transitions to activate
+[opennav_docking-15] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[opennav_docking-15] [INFO] [1772244734.439434481] [docking_server]: Creating docking_server
+[planner_server-8] [INFO] [1772244734.439643916] [planner_server]: 
+[planner_server-8] 	planner_server lifecycle node launched. 
+[planner_server-8] 	Waiting on external lifecycle transitions to activate
+[planner_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[behavior_server-10] [INFO] [1772244734.439967210] [behavior_server]: 
+[behavior_server-10] 	behavior_server lifecycle node launched. 
+[behavior_server-10] 	Waiting on external lifecycle transitions to activate
+[behavior_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-12] [INFO] [1772244734.440025689] [waypoint_follower]: 
+[waypoint_follower-12] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-12] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-12] [INFO] [1772244734.440328496] [waypoint_follower]: Creating
+[planner_server-8] [INFO] [1772244734.440653018] [planner_server]: Creating
+[route_server-9] [INFO] [1772244734.441091114] [route_server]: 
+[route_server-9] 	route_server lifecycle node launched. 
+[route_server-9] 	Waiting on external lifecycle transitions to activate
+[route_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[velocity_smoother-13] [INFO] [1772244734.441097151] [velocity_smoother]: 
+[velocity_smoother-13] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-13] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[collision_monitor-14] [INFO] [1772244734.441692944] [collision_monitor]: 
+[collision_monitor-14] 	collision_monitor lifecycle node launched. 
+[collision_monitor-14] 	Waiting on external lifecycle transitions to activate
+[collision_monitor-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-4] [INFO] [1772244734.442213388] [lifecycle_manager_slam]: Creating
+[lifecycle_manager-4] [INFO] [1772244734.442454026] [lifecycle_manager_slam]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[planner_server-8] [INFO] [1772244734.444066432] [global_costmap.global_costmap]: 
+[planner_server-8] 	global_costmap lifecycle node launched. 
+[planner_server-8] 	Waiting on external lifecycle transitions to activate
+[planner_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-8] [INFO] [1772244734.444259704] [global_costmap.global_costmap]: Creating Costmap
+[lifecycle_manager-4] [INFO] [1772244734.448545274] [lifecycle_manager_slam]: [34m[1mCreating and initializing lifecycle service servers[0m[0m
+[map_saver_server-3] [INFO] [1772244734.448792361] [map_saver]: 
+[map_saver_server-3] 	map_saver lifecycle node launched. 
+[map_saver_server-3] 	Waiting on external lifecycle transitions to activate
+[map_saver_server-3] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_saver_server-3] [INFO] [1772244734.448843255] [map_saver]: Creating
+[controller_server-6] [INFO] [1772244734.449936184] [controller_server]: 
+[controller_server-6] 	controller_server lifecycle node launched. 
+[controller_server-6] 	Waiting on external lifecycle transitions to activate
+[controller_server-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-4] [INFO] [1772244734.450159914] [lifecycle_manager_slam]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-4] [INFO] [1772244734.450197186] [lifecycle_manager_slam]: [34m[1mConfiguring map_saver[0m[0m
+[map_saver_server-3] [INFO] [1772244734.450409642] [map_saver]: Configuring
+[controller_server-6] [INFO] [1772244734.451621497] [controller_server]: Creating controller server
+[smoother_server-7] [INFO] [1772244734.451766907] [smoother_server]: 
+[smoother_server-7] 	smoother_server lifecycle node launched. 
+[smoother_server-7] 	Waiting on external lifecycle transitions to activate
+[smoother_server-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-7] [INFO] [1772244734.452749715] [smoother_server]: Creating smoother server
+[lifecycle_manager-4] [INFO] [1772244734.453940530] [lifecycle_manager_slam]: [34m[1mActivating map_saver[0m[0m
+[controller_server-6] [INFO] [1772244734.453968916] [local_costmap.local_costmap]: 
+[controller_server-6] 	local_costmap lifecycle node launched. 
+[controller_server-6] 	Waiting on external lifecycle transitions to activate
+[controller_server-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_saver_server-3] [INFO] [1772244734.454052041] [map_saver]: Activating
+[map_saver_server-3] [INFO] [1772244734.454070165] [map_saver]: Creating bond (map_saver) to lifecycle manager.
+[controller_server-6] [INFO] [1772244734.454115414] [local_costmap.local_costmap]: Creating Costmap
+[lifecycle_manager-16] [INFO] [1772244734.473548692] [lifecycle_manager_navigation]: Creating
+[lifecycle_manager-16] [INFO] [1772244734.473664481] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-16] [INFO] [1772244734.475169370] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service servers[0m[0m
+[lifecycle_manager-16] [INFO] [1772244734.476487729] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-16] [INFO] [1772244734.476515568] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-6] [INFO] [1772244734.476704181] [controller_server]: Configuring controller interface
+[controller_server-6] [INFO] [1772244734.476716271] [controller_server]: getting progress checker plugins..
+[controller_server-6] [INFO] [1772244734.476737340] [controller_server]: getting goal checker plugins..
+[controller_server-6] [INFO] [1772244734.476747320] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-6] [INFO] [1772244734.476759182] [local_costmap.local_costmap]: Configuring
+[controller_server-6] [INFO] [1772244734.478697227] [local_costmap.local_costmap]: Using plugin "obstacle_layer"
+[controller_server-6] [INFO] [1772244734.480161783] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[controller_server-6] [INFO] [1772244734.480583243] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"
+[controller_server-6] [INFO] [1772244734.480592817] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-6] [INFO] [1772244734.480670623] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[controller_server-6] [INFO] [1772244734.484523146] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-6] [INFO] [1772244734.484559271] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[controller_server-6] [INFO] [1772244734.484717609] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[controller_server-6] [INFO] [1772244734.484734931] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-6] [INFO] [1772244734.485127412] [controller_server]: Created controller : FollowPath of type nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-6] [INFO] [1772244734.485750809] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-16] [INFO] [1772244734.487536247] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-7] [INFO] [1772244734.487801298] [smoother_server]: Configuring smoother server
+[smoother_server-7] [INFO] [1772244734.492322616] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-7] [INFO] [1772244734.492393809] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-16] [INFO] [1772244734.495003579] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-8] [INFO] [1772244734.495171585] [planner_server]: Configuring
+[planner_server-8] [INFO] [1772244734.495189025] [global_costmap.global_costmap]: Configuring
+[planner_server-8] [INFO] [1772244734.496590462] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-8] [INFO] [1772244734.497984497] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-8] [INFO] [1772244734.498455121] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-8] [INFO] [1772244734.498463625] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-8] [INFO] [1772244734.498516509] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-8] [INFO] [1772244734.498918153] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-8] [INFO] [1772244734.498926650] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-8] [INFO] [1772244734.498985158] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[planner_server-8] [INFO] [1772244734.502780137] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner::NavfnPlanner
+[planner_server-8] [INFO] [1772244734.502799750] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[planner_server-8] [INFO] [1772244734.502845432] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-16] [INFO] [1772244734.504841909] [lifecycle_manager_navigation]: [34m[1mConfiguring route_server[0m[0m
+[route_server-9] [INFO] [1772244734.505088181] [route_server]: Configuring
+[route_server-9] [INFO] [1772244734.511397725] [route_server]: Created GraphFileLoader GeoJsonGraphFileLoader of type nav2_route::GeoJsonGraphFileLoader
+[route_server-9] [INFO] [1772244734.511413567] [route_server]: Configuring geojson graph file loader
+[route_server-9] [INFO] [1772244734.511417238] [route_server]: No graph file provided to load yet.
+[route_server-9] [INFO] [1772244734.511956693] [route_server]: Created edge cost function plugin DistanceScorer of type nav2_route::DistanceScorer
+[route_server-9] [INFO] [1772244734.511963021] [route_server]: Configuring distance scorer.
+[route_server-9] [INFO] [1772244734.512512769] [route_server]: Created route operation AdjustSpeedLimit of type nav2_route::AdjustSpeedLimit
+[route_server-9] [INFO] [1772244734.512518051] [route_server]: Configuring Adjust speed limit operation.
+[route_server-9] [INFO] [1772244734.512656591] [route_server]: Created route operation ReroutingService of type nav2_route::ReroutingService
+[route_server-9] [INFO] [1772244734.512665868] [route_server]: Configuring Rerouting service operation.
+[lifecycle_manager-16] [INFO] [1772244734.513521997] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-10] [INFO] [1772244734.513704656] [behavior_server]: Configuring
+[behavior_server-10] [INFO] [1772244734.514732833] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[behavior_server-10] [INFO] [1772244734.515188476] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[behavior_server-10] [INFO] [1772244734.515580428] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[behavior_server-10] [INFO] [1772244734.515977115] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[behavior_server-10] [INFO] [1772244734.518090415] [behavior_server]: Configuring spin
+[behavior_server-10] [INFO] [1772244734.519036317] [behavior_server]: Configuring backup
+[behavior_server-10] [INFO] [1772244734.519637102] [behavior_server]: Configuring drive_on_heading
+[behavior_server-10] [INFO] [1772244734.520271206] [behavior_server]: Configuring wait
+[lifecycle_manager-16] [INFO] [1772244734.521107689] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[velocity_smoother-13] [INFO] [1772244734.521235038] [velocity_smoother]: Configuring velocity smoother
+[lifecycle_manager-16] [INFO] [1772244734.522007053] [lifecycle_manager_navigation]: [34m[1mConfiguring collision_monitor[0m[0m
+[collision_monitor-14] [INFO] [1772244734.522210191] [collision_monitor]: Configuring
+[collision_monitor-14] [INFO] [1772244734.523866750] [collision_monitor]: [scan]: Creating Scan
+[collision_monitor-14] [INFO] [1772244734.524342182] [collision_monitor]: [FootprintApproach]: Creating Polygon
+[collision_monitor-14] [INFO] [1772244734.524421380] [collision_monitor]: [FootprintApproach]: Polygon points are not defined. Using dynamic subscription instead.
+[collision_monitor-14] [INFO] [1772244734.524507453] [collision_monitor]: [FootprintApproach]: Making footprint subscriber on local_costmap/published_footprint topic
+[lifecycle_manager-16] [INFO] [1772244734.527259669] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-11] [INFO] [1772244734.527414143] [bt_navigator]: Configuring
+[bt_navigator-11] [INFO] [1772244734.528759034] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[bt_navigator-11] [WARN] [1772244734.530468075] [bt_navigator]: error_code_name_prefixes parameters were not set. Using default values of: assisted_teleop backup compute_path dock_robot drive_on_heading follow_path nav_thru_poses nav_to_pose spin undock_robot wait
+[bt_navigator-11] Make sure these match your BT and there are not other sources of error codes youreported to your application
+[bt_navigator-11] [INFO] [1772244734.550998790] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[lifecycle_manager-4] [INFO] [1772244734.555339850] [lifecycle_manager_slam]: Server map_saver connected with bond.
+[lifecycle_manager-4] [INFO] [1772244734.555368099] [lifecycle_manager_slam]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-4] [INFO] [1772244734.555377172] [lifecycle_manager_slam]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-16] [INFO] [1772244734.557533078] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[waypoint_follower-12] [INFO] [1772244734.557712708] [waypoint_follower]: Configuring
+[waypoint_follower-12] [INFO] [1772244734.562178920] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[waypoint_follower-12] [INFO] [1772244734.562210602] [waypoint_follower]: Waypoint pause duration is set to zero, disabling task executor plugin.
+[lifecycle_manager-16] [INFO] [1772244734.562411314] [lifecycle_manager_navigation]: [34m[1mConfiguring docking_server[0m[0m
+[opennav_docking-15] [INFO] [1772244734.562544778] [docking_server]: Configuring docking_server
+[opennav_docking-15] [INFO] [1772244734.562565920] [docking_server]: Controller frequency set to 50.0000Hz
+[opennav_docking-15] [INFO] [1772244734.567223105] [docking_server]: Created charging dock plugin simple_charging_dock of type opennav_docking::SimpleChargingDock
+[opennav_docking-15] [WARN] [1772244734.567601840] [docking_server]: Dock database filepath nor dock parameters set. Docking actions can only be executed specifying the dock pose via the action request. Or update the dock database via the reload_database service.
+[opennav_docking-15] [INFO] [1772244734.567609326] [docking_server]: Docking Server has 1 dock types and 0 dock instances available.
+[lifecycle_manager-16] [INFO] [1772244734.567925468] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-6] [INFO] [1772244734.568014664] [controller_server]: Activating
+[controller_server-6] [INFO] [1772244734.568033177] [local_costmap.local_costmap]: Activating
+[controller_server-6] [INFO] [1772244734.568037810] [local_costmap.local_costmap]: Checking transform
+[controller_server-6] [INFO] [1772244734.568055703] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[sync_slam_toolbox_node-5] [INFO] [1772244734.681592201] [slam_toolbox]: Configuring
+[sync_slam_toolbox_node-5] [INFO] [1772244734.683920570] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[sync_slam_toolbox_node-5] [INFO] [1772244734.683963752] [slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[sync_slam_toolbox_node-5] [INFO] [1772244734.689763891] [slam_toolbox]: Activating
+[stage_ros2-2] [INFO] [1772244734.700330639] [stage]: New Vehicle "robot_0"
+[stage_ros2-2] [INFO] [1772244734.702137601] [stage]: robot_0 is using stamped velocity commands.
+[sync_slam_toolbox_node-5] Info: clipped range threshold to be within minimum and maximum range!
+[sync_slam_toolbox_node-5] Registering sensor: [Custom Described Lidar]
+[rviz2-1] [INFO] [1772244734.959982639] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-1] [INFO] [1772244734.960057321] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-1] [INFO] [1772244734.983256831] [rviz2]: Stereo is NOT SUPPORTED
+[controller_server-6] [INFO] [1772244735.068163950] [local_costmap.local_costmap]: start
+[controller_server-6] [INFO] [1772244735.318474119] [controller_server]: Activating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-6] [INFO] [1772244735.318495519] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244735.420511048] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244735.420541142] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[smoother_server-7] [INFO] [1772244735.420784952] [smoother_server]: Activating
+[smoother_server-7] [INFO] [1772244735.420812979] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244735.522286021] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244735.522307473] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[planner_server-8] [INFO] [1772244735.522518071] [planner_server]: Activating
+[planner_server-8] [INFO] [1772244735.522537054] [global_costmap.global_costmap]: Activating
+[planner_server-8] [INFO] [1772244735.522540553] [global_costmap.global_costmap]: Checking transform
+[planner_server-8] [INFO] [1772244735.522613029] [global_costmap.global_costmap]: start
+[planner_server-8] [INFO] [1772244735.694164223] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 617 X 742 at 0.020000 m/pix
+[rviz2-1] [INFO] [1772244735.715407301] [rviz2]: Trying to create a map of size 617 x 742 using 1 swatches
+[planner_server-8] [INFO] [1772244736.572922266] [planner_server]: Activating plugin GridBased of type NavfnPlanner
+[planner_server-8] [INFO] [1772244736.573304455] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244736.674425823] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244736.674445793] [lifecycle_manager_navigation]: [34m[1mActivating route_server[0m[0m
+[route_server-9] [INFO] [1772244736.674696803] [route_server]: Activating
+[route_server-9] [INFO] [1772244736.674770045] [route_server]: Creating bond (route_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244736.776056736] [lifecycle_manager_navigation]: Server route_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244736.776076599] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-10] [INFO] [1772244736.776353892] [behavior_server]: Activating
+[behavior_server-10] [INFO] [1772244736.776367652] [behavior_server]: Activating spin
+[behavior_server-10] [INFO] [1772244736.776373361] [behavior_server]: Activating backup
+[behavior_server-10] [INFO] [1772244736.776377700] [behavior_server]: Activating drive_on_heading
+[behavior_server-10] [INFO] [1772244736.776381963] [behavior_server]: Activating wait
+[behavior_server-10] [INFO] [1772244736.776387539] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244736.877969252] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244736.877987252] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[velocity_smoother-13] [INFO] [1772244736.878313720] [velocity_smoother]: Activating
+[velocity_smoother-13] [INFO] [1772244736.878344337] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244736.979657040] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[lifecycle_manager-16] [INFO] [1772244736.979680835] [lifecycle_manager_navigation]: [34m[1mActivating collision_monitor[0m[0m
+[collision_monitor-14] [INFO] [1772244736.979971016] [collision_monitor]: Activating
+[collision_monitor-14] [INFO] [1772244736.980003924] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244737.091539923] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[lifecycle_manager-16] [INFO] [1772244737.091560709] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-11] [INFO] [1772244737.091741769] [bt_navigator]: Activating
+[bt_navigator-11] WARNING: You executed BehaviorTreeFactory::createTreeFromFile after registerBehaviorTreeFrom[File/Text].
+[bt_navigator-11] This is NOT, probably, what you want to do.
+[bt_navigator-11] You should probably use BehaviorTreeFactory::createTree, instead
+[bt_navigator-11] WARNING: You executed BehaviorTreeFactory::createTreeFromFile after registerBehaviorTreeFrom[File/Text].
+[bt_navigator-11] This is NOT, probably, what you want to do.
+[bt_navigator-11] You should probably use BehaviorTreeFactory::createTree, instead
+[bt_navigator-11] [INFO] [1772244737.107552880] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244737.208489224] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[lifecycle_manager-16] [INFO] [1772244737.208512943] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[waypoint_follower-12] [INFO] [1772244737.208606028] [waypoint_follower]: Activating
+[waypoint_follower-12] [INFO] [1772244737.208623259] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244737.309773138] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[lifecycle_manager-16] [INFO] [1772244737.309792922] [lifecycle_manager_navigation]: [34m[1mActivating docking_server[0m[0m
+[opennav_docking-15] [INFO] [1772244737.309980724] [docking_server]: Activating docking_server
+[opennav_docking-15] [INFO] [1772244737.312861855] [docking_server]: Creating bond (docking_server) to lifecycle manager.
+[lifecycle_manager-16] [INFO] [1772244737.413836943] [lifecycle_manager_navigation]: Server docking_server connected with bond.
+[lifecycle_manager-16] [INFO] [1772244737.413860006] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-16] [INFO] [1772244737.413864945] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[rviz2-1] [INFO] [1772244745.203884913] [rviz2]: Message Filter dropping message: frame 'laser' at time 0.400 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-1] [INFO] [1772244765.035919665] [rviz2]: Setting estimate pose: Frame:map, Position(-0.0225624, -0.0217166, 0), Orientation(0, 0, 0.696936, 0.717133) = Angle: 1.54223
+[rviz2-1] [INFO] [1772244771.867994652] [rviz2]: Setting goal pose: Frame:map, Position(0.604513, -4.0559, 0), Orientation(0, 0, -0.119331, 0.992855) = Angle: -0.239232
+[bt_navigator-11] [INFO] [1772244771.868731002] [bt_navigator]: Begin navigating from current location (0.00, 0.00) to (0.60, -4.06)
+[planner_server-8] [INFO] [1772244771.869156110] [planner_server]: Computing path to goal.
+[planner_server-8] [ERROR] [1772244771.873270290] [planner_server]: Failed to create a plan from potential when a legal potential was found. This shouldn't happen.
+[planner_server-8] [WARN] [1772244771.873330835] [planner_server]: GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"
+[planner_server-8] [WARN] [1772244771.873335560] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle. error_code:208, error_msg:'GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"'.
+[planner_server-8] [INFO] [1772244771.888942970] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-8] [INFO] [1772244771.889283300] [planner_server]: Computing path to goal.
+[planner_server-8] [ERROR] [1772244772.532711689] [planner_server]: Failed to create a plan from potential when a legal potential was found. This shouldn't happen.
+[planner_server-8] [WARN] [1772244772.532785904] [planner_server]: GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"
+[planner_server-8] [WARN] [1772244772.532795986] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle. error_code:208, error_msg:'GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"'.
+[controller_server-6] [INFO] [1772244772.548396255] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-8] [INFO] [1772244772.548676379] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-8] [INFO] [1772244772.549062990] [planner_server]: Computing path to goal.
+[planner_server-8] [ERROR] [1772244773.531662026] [planner_server]: Failed to create a plan from potential when a legal potential was found. This shouldn't happen.
+[planner_server-8] [WARN] [1772244773.531730021] [planner_server]: GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"
+[planner_server-8] [WARN] [1772244773.531735582] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle. error_code:208, error_msg:'GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"'.
+[planner_server-8] [INFO] [1772244773.548335230] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-8] [INFO] [1772244773.548784023] [planner_server]: Computing path to goal.
+[planner_server-8] [ERROR] [1772244774.531174502] [planner_server]: Failed to create a plan from potential when a legal potential was found. This shouldn't happen.
+[planner_server-8] [WARN] [1772244774.531236640] [planner_server]: GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"
+[planner_server-8] [WARN] [1772244774.531242301] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle. error_code:208, error_msg:'GridBasedplugin failed to plan from (0.00, 0.00) to (0.60, -4.06): "Failed to create plan with tolerance of: 0.500000"'.
+[behavior_server-10] [INFO] [1772244774.548915826] [behavior_server]: Running spin
+[behavior_server-10] [INFO] [1772244774.549189516] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-10] [INFO] [1772244776.849304632] [behavior_server]: spin completed successfully
+[planner_server-8] [INFO] [1772244776.869140520] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244776.889150703] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-6] [WARN] [1772244776.889179189] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[controller_server-6] [WARN] [1772244776.889221168] [controller_server]: No progress checker was specified in parameter 'current_progress_checker'. Server will use only plugin loaded progress_checker . This warning will appear once.
+[planner_server-8] [INFO] [1772244777.889178934] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244777.939329491] [controller_server]: Passing new path to controller.
+[planner_server-8] [INFO] [1772244778.919108768] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244778.939327034] [controller_server]: Passing new path to controller.
+[planner_server-8] [INFO] [1772244779.948805502] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244779.989327292] [controller_server]: Passing new path to controller.
+[sync_slam_toolbox_node-5] terminate called after throwing an instance of 'std::runtime_error'
+[sync_slam_toolbox_node-5]   what():  Mapper FATAL ERROR - unable to get pointer in probability search!
+[planner_server-8] [INFO] [1772244780.969242212] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244780.989331839] [controller_server]: Passing new path to controller.
+[planner_server-8] [INFO] [1772244781.303630905] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 46.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[controller_server-6] [ERROR] [1772244781.612609655] [RPPPathHandler]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 46.400000 but the latest data is at time 46.300000, when looking up transform from frame [odom] to frame [map]
+[controller_server-6] [ERROR] [1772244781.612667823] [controller_server]: Unable to transform robot pose into global plan's frame
+[controller_server-6] [WARN] [1772244781.612695270] [controller_server]: [follow_path] [ActionServer] Aborting handle. error_code:102, error_msg:'Unable to transform robot pose into global plan's frame'.
+[bt_navigator-11] [WARN] [1772244781.628238407] [bt_navigator]: NavigateToPoseNavigator::goalCompleted error 102:Unable to transform robot pose into global plan's frame.
+[bt_navigator-11] [WARN] [1772244781.628252473] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle. error_code:102, error_msg:'Unable to transform robot pose into global plan's frame'.
+[bt_navigator-11] [ERROR] [1772244781.628279083] [bt_navigator]: Goal failed error_code:102 error_msg:'Unable to transform robot pose into global plan's frame'
+[ERROR] [sync_slam_toolbox_node-5]: process has died [pid 84693, exit code -6, cmd '/opt/ros/kilted/lib/slam_toolbox/sync_slam_toolbox_node --ros-args -r __node:=slam_toolbox -r __ns:=/ --params-file /home/magraz/rob599_ws/install/hw4_localization/share/hw4_localization/config/slam_toolbox.yaml --params-file /tmp/launch_params_va6uc2sd -r /scan:=scan -r /tf:=tf -r /tf_static:=tf_static -r /map:=map'].
+[rviz2-1] [INFO] [1772244782.114180336] [rviz2]: Message Filter dropping message: frame 'laser' at time 46.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [INFO] [1772244783.803824932] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 48.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-1] [INFO] [1772244784.610639539] [rviz2]: Message Filter dropping message: frame 'laser' at time 48.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [INFO] [1772244786.303784212] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 51.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-1] [INFO] [1772244787.106860651] [rviz2]: Message Filter dropping message: frame 'laser' at time 51.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [INFO] [1772244788.803803333] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 53.900 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[rviz2-1] [INFO] [1772244789.634105576] [rviz2]: Message Filter dropping message: frame 'laser' at time 53.900 for reason 'discarding message because the queue is full'
+[rviz2-1] [INFO] [1772244790.332157661] [rviz2]: Setting goal pose: Frame:map, Position(-0.231588, -2.60318, 0), Orientation(0, 0, -0.0498137, 0.998759) = Angle: -0.0996687
+[bt_navigator-11] [INFO] [1772244790.332812341] [bt_navigator]: Begin navigating from current location (-0.02, -0.10) to (-0.23, -2.60)
+[planner_server-8] [INFO] [1772244790.333157512] [planner_server]: Computing path to goal.
+[controller_server-6] [INFO] [1772244790.353408190] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-6] [ERROR] [1772244790.809159472] [RPPPathHandler]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 55.600000 but the latest data is at time 46.300000, when looking up transform from frame [odom] to frame [map]
+[controller_server-6] [ERROR] [1772244790.809214468] [controller_server]: Unable to transform robot pose into global plan's frame
+[controller_server-6] [WARN] [1772244790.809262510] [controller_server]: [follow_path] [ActionServer] Aborting handle. error_code:102, error_msg:'Unable to transform robot pose into global plan's frame'.
+[bt_navigator-11] [WARN] [1772244790.822293455] [bt_navigator]: NavigateToPoseNavigator::goalCompleted error 102:Unable to transform robot pose into global plan's frame.
+[bt_navigator-11] [WARN] [1772244790.822314720] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle. error_code:102, error_msg:'Unable to transform robot pose into global plan's frame'.
+[bt_navigator-11] [ERROR] [1772244790.822332149] [bt_navigator]: Goal failed error_code:102 error_msg:'Unable to transform robot pose into global plan's frame'
+[planner_server-8] [INFO] [1772244791.303771551] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 56.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244791.804493309] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 47.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244792.130316036] [rviz2]: Message Filter dropping message: frame 'laser' at time 56.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244792.805794112] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 48.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244793.803808379] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 58.900 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244793.806286028] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 49.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244794.626614688] [rviz2]: Message Filter dropping message: frame 'laser' at time 58.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244794.805933290] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 50.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244795.805777924] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 51.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244796.303687420] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 61.400 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244796.804494630] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 52.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244797.122801169] [rviz2]: Message Filter dropping message: frame 'laser' at time 61.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244797.804664677] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 53.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244798.804008075] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 63.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244798.804577550] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 54.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244799.618252981] [rviz2]: Message Filter dropping message: frame 'laser' at time 63.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244799.804765359] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 55.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244800.804691537] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 56.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244801.303818019] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 66.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244801.804708380] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 57.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244802.114200964] [rviz2]: Message Filter dropping message: frame 'laser' at time 66.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244802.806411364] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 58.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244803.803877629] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 68.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244803.805151060] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 59.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244804.610461681] [rviz2]: Message Filter dropping message: frame 'laser' at time 68.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244804.804637455] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 60.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244805.804740665] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 61.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244806.303815499] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 71.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244806.804728058] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 62.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244807.106149104] [rviz2]: Message Filter dropping message: frame 'laser' at time 71.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244807.804727517] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 63.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244808.803865455] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 73.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244808.804851171] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 64.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244809.634470286] [rviz2]: Message Filter dropping message: frame 'laser' at time 73.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244809.804643975] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 65.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244810.804599863] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 66.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244811.303871360] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 76.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244811.804800159] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 67.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244812.130538437] [rviz2]: Message Filter dropping message: frame 'laser' at time 76.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244812.806042090] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 68.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244813.803868547] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 78.900 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244813.807003044] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 69.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244814.626174969] [rviz2]: Message Filter dropping message: frame 'laser' at time 78.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244814.806387688] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 70.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244815.806372473] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 71.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244816.304115026] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 81.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244816.807157833] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 72.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244817.122857120] [rviz2]: Message Filter dropping message: frame 'laser' at time 81.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244817.806406373] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 73.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244818.804061084] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 83.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244818.806324626] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 74.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244819.618479653] [rviz2]: Message Filter dropping message: frame 'laser' at time 83.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244819.805755552] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 75.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244820.806381755] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 76.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244821.303674618] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 86.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244821.806302184] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 77.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244822.114296372] [rviz2]: Message Filter dropping message: frame 'laser' at time 86.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244822.806302379] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 78.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244823.803768189] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 88.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244823.806658691] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 79.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244824.610696964] [rviz2]: Message Filter dropping message: frame 'laser' at time 88.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244824.804838764] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 80.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244825.805763697] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 81.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244826.303908494] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 91.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244826.805373755] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 82.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244827.107007212] [rviz2]: Message Filter dropping message: frame 'laser' at time 91.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244827.804701642] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 83.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244828.803723223] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 93.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244828.804662194] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 84.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244829.634553652] [rviz2]: Message Filter dropping message: frame 'laser' at time 93.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244829.804656903] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 85.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244830.804636645] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 86.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244831.303750673] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 96.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244831.804726086] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 87.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244832.130504536] [rviz2]: Message Filter dropping message: frame 'laser' at time 96.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244832.804868591] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 88.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244833.803645235] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 98.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244833.804590613] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 89.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244834.626456644] [rviz2]: Message Filter dropping message: frame 'laser' at time 98.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244834.804816840] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 90.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244835.804779185] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 91.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244836.303862368] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 101.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244836.804593989] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 92.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244837.122218452] [rviz2]: Message Filter dropping message: frame 'laser' at time 101.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244837.804652099] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 93.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244838.803856465] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 103.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244838.804656607] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 94.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244839.618144894] [rviz2]: Message Filter dropping message: frame 'laser' at time 103.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244839.804808324] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 95.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244840.804789607] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 96.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244841.303689323] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 106.300 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244841.804484453] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 97.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244842.114532329] [rviz2]: Message Filter dropping message: frame 'laser' at time 106.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244842.804935509] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 98.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244843.803732076] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 108.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244843.804677652] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 99.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244844.610203169] [rviz2]: Message Filter dropping message: frame 'laser' at time 108.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244844.804759703] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 100.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244845.804737537] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 101.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244846.304015323] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 111.400 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244846.804731573] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 102.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244847.106470832] [rviz2]: Message Filter dropping message: frame 'laser' at time 111.400 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244847.804629758] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 103.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244848.803755558] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 113.900 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244848.805298576] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 104.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[rviz2-1] [INFO] [1772244849.634811303] [rviz2]: Message Filter dropping message: frame 'laser' at time 113.900 for reason 'discarding message because the queue is full'
+[planner_server-8] [ERROR] [1772244849.805601270] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 105.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [ERROR] [1772244850.805866274] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 106.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[planner_server-8] [INFO] [1772244851.303744792] [global_costmap.global_costmap]: Message Filter dropping message: frame 'laser' at time 116.400 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[planner_server-8] [ERROR] [1772244851.805423765] [transformPoseInTargetFrame]: Extrapolation Error looking up target frame: Lookup would require extrapolation into the past.  Requested time 46.300000 but the earliest data is at time 107.000000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-8] 
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[planner_server-8] [INFO] [1772244852.117800742] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[planner_server-8] [INFO] [1772244852.117830107] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[planner_server-8] [INFO] [1772244852.117857972] [planner_server]: Deactivating
+[planner_server-8] [INFO] [1772244852.117881650] [global_costmap.global_costmap]: Deactivating
+[INFO] [lifecycle_manager-4]: process has finished cleanly [pid 84692]
+[INFO] [route_server-9]: process has finished cleanly [pid 84697]
+[INFO] [velocity_smoother-13]: process has finished cleanly [pid 84701]
+[INFO] [smoother_server-7]: process has finished cleanly [pid 84695]
+[INFO] [waypoint_follower-12]: process has finished cleanly [pid 84700]
+[INFO] [collision_monitor-14]: process has finished cleanly [pid 84702]
+[INFO] [behavior_server-10]: process has finished cleanly [pid 84698]
+[INFO] [map_saver_server-3]: process has finished cleanly [pid 84691]
+[INFO] [opennav_docking-15]: process has finished cleanly [pid 84703]
+[INFO] [bt_navigator-11]: process has finished cleanly [pid 84699]
+[INFO] [rviz2-1]: process has finished cleanly [pid 84689]
+[INFO] [lifecycle_manager-16]: process has finished cleanly [pid 84860]
+[INFO] [controller_server-6]: process has finished cleanly [pid 84694]
+[INFO] [planner_server-8]: process has finished cleanly [pid 84696]
+[rviz2-1] [INFO] [1772244852.117807742] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[collision_monitor-14] [INFO] [1772244852.117818013] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[collision_monitor-14] [INFO] [1772244852.117839486] [collision_monitor]: Running Nav2 LifecycleNode rcl preshutdown (collision_monitor)
+[collision_monitor-14] [INFO] [1772244852.117867059] [collision_monitor]: Deactivating
+[collision_monitor-14] [INFO] [1772244852.117874315] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[opennav_docking-15] [INFO] [1772244852.117821273] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[opennav_docking-15] [INFO] [1772244852.117860889] [docking_server]: Running Nav2 LifecycleNode rcl preshutdown (docking_server)
+[opennav_docking-15] [INFO] [1772244852.117897216] [docking_server]: Deactivating docking_server
+[route_server-9] [INFO] [1772244852.117814084] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[route_server-9] [INFO] [1772244852.117917038] [route_server]: Running Nav2 LifecycleNode rcl preshutdown (route_server)
+[route_server-9] [INFO] [1772244852.117943539] [route_server]: Deactivating
+[route_server-9] [INFO] [1772244852.117951757] [route_server]: Destroying bond (route_server) to lifecycle manager.
+[bt_navigator-11] [INFO] [1772244852.117929414] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-11] [INFO] [1772244852.117960221] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[bt_navigator-11] [INFO] [1772244852.117995389] [bt_navigator]: Deactivating
+[bt_navigator-11] [INFO] [1772244852.118015603] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[smoother_server-7] [INFO] [1772244852.117927958] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-7] [INFO] [1772244852.117962558] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)
+[smoother_server-7] [INFO] [1772244852.118003517] [smoother_server]: Deactivating
+[smoother_server-7] [INFO] [1772244852.118031574] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[controller_server-6] [INFO] [1772244852.117940550] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[controller_server-6] [INFO] [1772244852.117960503] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[controller_server-6] [INFO] [1772244852.117983472] [controller_server]: Deactivating
+[controller_server-6] [INFO] [1772244852.117993798] [controller_server]: Deactivating controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-6] [INFO] [1772244852.118003528] [local_costmap.local_costmap]: Deactivating
+[lifecycle_manager-4] [INFO] [1772244852.117941136] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-4] [INFO] [1772244852.117960925] [lifecycle_manager_slam]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_slam)
+[lifecycle_manager-4] [INFO] [1772244852.118030118] [lifecycle_manager_slam]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-16] [INFO] [1772244852.117941271] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-16] [INFO] [1772244852.117966236] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)
+[lifecycle_manager-16] [INFO] [1772244852.117983423] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[stage_ros2-2] [INFO] [1772244852.117948248] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[velocity_smoother-13] [INFO] [1772244852.117973160] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[velocity_smoother-13] [INFO] [1772244852.117988603] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)
+[velocity_smoother-13] [INFO] [1772244852.118025121] [velocity_smoother]: Deactivating
+[velocity_smoother-13] [INFO] [1772244852.118035606] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[behavior_server-10] [INFO] [1772244852.117974260] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-10] [INFO] [1772244852.118020707] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[behavior_server-10] [INFO] [1772244852.118055299] [behavior_server]: Deactivating
+[behavior_server-10] [INFO] [1772244852.118078069] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[map_saver_server-3] [INFO] [1772244852.118003664] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_saver_server-3] [INFO] [1772244852.118023927] [map_saver]: Running Nav2 LifecycleNode rcl preshutdown (map_saver)
+[map_saver_server-3] [INFO] [1772244852.118054003] [map_saver]: Deactivating
+[map_saver_server-3] [INFO] [1772244852.118060437] [map_saver]: Destroying bond (map_saver) to lifecycle manager.
+[waypoint_follower-12] [INFO] [1772244852.118019058] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[waypoint_follower-12] [INFO] [1772244852.118049301] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)
+[waypoint_follower-12] [INFO] [1772244852.118089734] [waypoint_follower]: Deactivating
+[waypoint_follower-12] [INFO] [1772244852.118131928] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[opennav_docking-15] [INFO] [1772244852.118466625] [docking_server]: Destroying bond (docking_server) to lifecycle manager.
+[opennav_docking-15] [INFO] [1772244852.128588362] [docking_server]: Cleaning up docking_server
+[opennav_docking-15] [INFO] [1772244852.129578134] [docking_server]: Destroying bond (docking_server) to lifecycle manager.
+[opennav_docking-15] [INFO] [1772244852.132327756] [docking_server]: Destroying
+[opennav_docking-15] [WARN] [1772244852.132341408] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[collision_monitor-14] [INFO] [1772244852.128005210] [collision_monitor]: Cleaning up
+[collision_monitor-14] [INFO] [1772244852.128020326] [collision_monitor]: [FootprintApproach]: Destroying Polygon
+[collision_monitor-14] [INFO] [1772244852.128024948] [collision_monitor]: [scan]: Destroying Scan
+[collision_monitor-14] [INFO] [1772244852.129729279] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[collision_monitor-14] [INFO] [1772244852.130539353] [collision_monitor]: Destroying
+[collision_monitor-14] [WARN] [1772244852.130549209] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[route_server-9] [INFO] [1772244852.128165115] [route_server]: Cleaning up
+[route_server-9] [INFO] [1772244852.130362743] [route_server]: Destroying bond (route_server) to lifecycle manager.
+[route_server-9] [INFO] [1772244852.132801581] [route_server]: Destroying
+[route_server-9] [WARN] [1772244852.132810674] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[map_saver_server-3] [INFO] [1772244852.128193464] [map_saver]: Cleaning up
+[map_saver_server-3] [INFO] [1772244852.128216014] [map_saver]: Destroying bond (map_saver) to lifecycle manager.
+[map_saver_server-3] [INFO] [1772244852.128594068] [map_saver]: Destroying
+[map_saver_server-3] [WARN] [1772244852.128604221] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[smoother_server-7] [INFO] [1772244852.128215903] [smoother_server]: Cleaning up
+[smoother_server-7] [INFO] [1772244852.129789638] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[smoother_server-7] [INFO] [1772244852.130987841] [smoother_server]: Destroying
+[smoother_server-7] [WARN] [1772244852.130996021] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[velocity_smoother-13] [INFO] [1772244852.128233390] [velocity_smoother]: Cleaning up
+[velocity_smoother-13] [INFO] [1772244852.128248467] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[velocity_smoother-13] [INFO] [1772244852.128594254] [velocity_smoother]: Destroying
+[velocity_smoother-13] [WARN] [1772244852.128605734] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[bt_navigator-11] [INFO] [1772244852.128233463] [bt_navigator]: Cleaning up
+[bt_navigator-11] [INFO] [1772244852.143887290] [bt_navigator]: Completed Cleaning up
+[bt_navigator-11] [INFO] [1772244852.143921071] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[bt_navigator-11] [INFO] [1772244852.145608744] [bt_navigator]: Destroying
+[bt_navigator-11] [WARN] [1772244852.145620337] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[behavior_server-10] [INFO] [1772244852.128320403] [behavior_server]: Cleaning up
+[behavior_server-10] [INFO] [1772244852.129525753] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[behavior_server-10] [INFO] [1772244852.136710038] [behavior_server]: Destroying
+[behavior_server-10] [WARN] [1772244852.136723249] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[waypoint_follower-12] [INFO] [1772244852.128377509] [waypoint_follower]: Cleaning up
+[waypoint_follower-12] [INFO] [1772244852.129470559] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[waypoint_follower-12] [INFO] [1772244852.132591814] [waypoint_follower]: Destroying
+[waypoint_follower-12] [WARN] [1772244852.132604456] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[lifecycle_manager-4] [INFO] [1772244852.128853283] [lifecycle_manager_slam]: Destroying lifecycle_manager_slam
+[lifecycle_manager-16] [ERROR] [1772244852.159770447] [rmw_zenoh_cpp]: SubscriberCallback triggered over 0/bond/bond::msg::dds_::Status_/RIHS01_87eaccffa254ffffadc0b61600452e8251740f06c25659a2dbda4927fdb1f70a.
+[lifecycle_manager-16] [ERROR] [1772244852.179814263] [rmw_zenoh_cpp]: SubscriberCallback triggered over 0/bond/bond::msg::dds_::Status_/RIHS01_87eaccffa254ffffadc0b61600452e8251740f06c25659a2dbda4927fdb1f70a.
+[lifecycle_manager-16] [INFO] [1772244852.220196793] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation
+[stage_ros2-2] [INFO] [1772244852.203278802] [stage]: rclcpp::ok() is false. Quitting.
+[stage_ros2-2] terminate called without an active exception
+[controller_server-6] [INFO] [1772244852.268470263] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-6] [INFO] [1772244852.278652888] [controller_server]: Cleaning up
+[controller_server-6] [INFO] [1772244852.278690946] [controller_server]: Cleaning up controller: FollowPath of type regulated_pure_pursuit_controller::RegulatedPurePursuitController
+[controller_server-6] [INFO] [1772244852.278905081] [local_costmap.local_costmap]: Cleaning up
+[controller_server-6] [INFO] [1772244852.280714539] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-6] [INFO] [1772244852.281087644] [local_costmap.local_costmap]: Destroying
+[controller_server-6] [WARN] [1772244852.281097232] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[controller_server-6] [INFO] [1772244852.281411127] [controller_server]: Destroying
+[controller_server-6] [WARN] [1772244852.281414806] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[planner_server-8] [INFO] [1772244852.523481308] [planner_server]: Deactivating plugin GridBased of type NavfnPlanner
+[planner_server-8] [INFO] [1772244852.523506024] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-8] [INFO] [1772244852.533603100] [planner_server]: Cleaning up
+[planner_server-8] [INFO] [1772244852.534363223] [global_costmap.global_costmap]: Cleaning up
+[planner_server-8] [INFO] [1772244852.535365209] [planner_server]: Cleaning up plugin GridBased of type NavfnPlanner
+[planner_server-8] [INFO] [1772244852.535676142] [planner_server]: Destroying plugin GridBased of type NavfnPlanner
+[planner_server-8] [INFO] [1772244852.536898701] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-8] [INFO] [1772244852.537334719] [global_costmap.global_costmap]: Destroying
+[planner_server-8] [WARN] [1772244852.537346546] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[planner_server-8] [INFO] [1772244852.537804452] [planner_server]: Destroying
+[planner_server-8] [WARN] [1772244852.537808503] [rclcpp_lifecycle]: LifecycleNode is not shut down: Node still in state(1) in destructor
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[ERROR] [stage_ros2-2]: process has died [pid 84690, exit code -6, cmd '/home/magraz/rob599_ws/install/stage_ros2/lib/stage_ros2/stage_ros2 --ros-args -r __node:=stage --params-file /tmp/launch_params_0ozp21mo'].
