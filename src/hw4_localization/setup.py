@@ -42,6 +42,7 @@ setup(
             "target_waypoint_patrol = hw4_localization.target_waypoint_patrol:main",
             "chase_target = hw4_localization.chase_target:main",
             "mcl = hw4_localization.mcl:main",
+            "mcl_error_plot = hw4_localization.mcl_error_plot:main",
         ],
     },
 )

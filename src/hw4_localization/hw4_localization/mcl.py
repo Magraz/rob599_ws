@@ -25,7 +25,12 @@ from scipy.ndimage import distance_transform_edt
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy, qos_profile_sensor_data
+from rclpy.qos import (
+    QoSProfile,
+    DurabilityPolicy,
+    ReliabilityPolicy,
+    qos_profile_sensor_data,
+)
 
 from geometry_msgs.msg import (
     PoseArray,
@@ -58,20 +63,20 @@ class MCL(Node):
         super().__init__("mcl")
 
         # ── Parameters ──────────────────────────────────────────────
-        self.declare_parameter("num_particles", 500)
+        self.declare_parameter("num_particles", 1000)
         self.declare_parameter("alpha1", 0.2)  # rot  -> rot  noise
         self.declare_parameter("alpha2", 0.2)  # trans -> rot  noise
         self.declare_parameter("alpha3", 0.2)  # trans -> trans noise
         self.declare_parameter("alpha4", 0.2)  # rot  -> trans noise
         self.declare_parameter("sigma_hit", 0.2)
-        self.declare_parameter("z_hit", 0.5)
-        self.declare_parameter("z_rand", 0.5)
-        self.declare_parameter("laser_max_range", 5.0)
-        self.declare_parameter("max_beams", 30)
-        self.declare_parameter("update_min_d", 0.2)   # metres before update
-        self.declare_parameter("update_min_a", 0.2)    # radians before update
+        self.declare_parameter("z_hit", 0.95)
+        self.declare_parameter("z_rand", 0.05)
+        self.declare_parameter("laser_max_range", 10.0)
+        self.declare_parameter("max_beams", 60)
+        self.declare_parameter("update_min_d", 0.2)  # metres before update
+        self.declare_parameter("update_min_a", 0.2)  # radians before update
         self.declare_parameter("resample_interval", 1)  # updates between resamples
-        self.declare_parameter("publish_rate", 10.0)    # Hz for particle cloud
+        self.declare_parameter("publish_rate", 10.0)  # Hz for particle cloud
         self.declare_parameter("scan_topic", "/base_scan")
         self.declare_parameter("odom_topic", "/odom")
         self.declare_parameter("tf_broadcast", True)
@@ -104,13 +109,17 @@ class MCL(Node):
         # Particles: Nx3 array  [x, y, theta]
         self.particles = None
         self.weights = None
-        self.map_data = None          # OccupancyGrid message
-        self.map_grid = None          # 2-D numpy bool (True = occupied)
+        self.map_data = None  # OccupancyGrid message
+        self.map_grid = None  # 2-D numpy bool (True = occupied)
         self.likelihood_field = None  # distance transform of map
-        self.map_info = None          # MapMetaData
+        self.map_info = None  # MapMetaData
 
-        self.prev_odom = None         # last Odometry used for motion update
+        self.prev_odom = None  # last Odometry used for motion update
+        self.latest_odom = None  # most recent odom msg (stored before init too)
         self.updates_since_resample = 0
+        self.motion_pending = (
+            False  # True after motion update, cleared after sensor update
+        )
         self.initialised = False
 
         # ── TF broadcaster ──────────────────────────────────────────
@@ -127,7 +136,9 @@ class MCL(Node):
             reliability=ReliabilityPolicy.RELIABLE,
         )
         self.create_subscription(OccupancyGrid, "/map", self._map_cb, map_qos)
-        self.create_subscription(LaserScan, scan_topic, self._scan_cb, qos_profile_sensor_data)
+        self.create_subscription(
+            LaserScan, scan_topic, self._scan_cb, qos_profile_sensor_data
+        )
         self.create_subscription(Odometry, odom_topic, self._odom_cb, 10)
         self.create_subscription(
             PoseWithCovarianceStamped, "/initialpose", self._initialpose_cb, 10
@@ -176,11 +187,13 @@ class MCL(Node):
         std_y = math.sqrt(max(cov[1, 1], 1e-6))
         std_yaw = math.sqrt(max(cov[5, 5], 1e-6))
 
-        self.particles = np.column_stack([
-            np.random.normal(px, std_x, self.num_particles),
-            np.random.normal(py, std_y, self.num_particles),
-            np.random.normal(yaw, std_yaw, self.num_particles),
-        ])
+        self.particles = np.column_stack(
+            [
+                np.random.normal(px, std_x, self.num_particles),
+                np.random.normal(py, std_y, self.num_particles),
+                np.random.normal(yaw, std_yaw, self.num_particles),
+            ]
+        )
         self.weights = np.ones(self.num_particles) / self.num_particles
         self.prev_odom = None
         self.initialised = True
@@ -188,8 +201,14 @@ class MCL(Node):
             f"Particles initialised around ({px:.2f}, {py:.2f}, {math.degrees(yaw):.1f} deg)"
         )
 
+        # Publish an immediate map→odom TF so the frames are connected
+        # before the first motion+scan cycle.
+        self._publish_estimated_pose(self.get_clock().now().to_msg())
+
     def _odom_cb(self, msg: Odometry):
         """Store latest odometry for the motion model."""
+        self.latest_odom = msg  # always track, even before initialisation
+
         if not self.initialised:
             return
 
@@ -198,7 +217,7 @@ class MCL(Node):
             return
 
         # Compute incremental motion in the odom frame
-        dx, dy, dtheta = self._compute_odom_delta(self.prev_odom, msg)
+        dx, dy, prev_theta, dtheta = self._compute_odom_delta(self.prev_odom, msg)
 
         # Only run the full update if the robot moved enough
         dist = math.hypot(dx, dy)
@@ -206,13 +225,19 @@ class MCL(Node):
             return
 
         # ── Motion update ───────────────────────────────────────
-        self._motion_update(dx, dy, dtheta)
+        self._motion_update(dx, dy, prev_theta, dtheta)
         self.prev_odom = msg
+        self.motion_pending = True
 
     def _scan_cb(self, msg: LaserScan):
-        """Run sensor update + resampling when a new scan arrives after motion."""
+        """Run sensor update + resampling only after the robot has moved."""
         if not self.initialised or self.likelihood_field is None:
             return
+
+        # Only update weights when a motion update has occurred
+        if not self.motion_pending:
+            return
+        self.motion_pending = False
 
         # ── Sensor update ───────────────────────────────────────
         self._sensor_update(msg)
@@ -232,7 +257,7 @@ class MCL(Node):
 
     @staticmethod
     def _compute_odom_delta(prev: Odometry, curr: Odometry):
-        """Return (dx, dy, dtheta) in the robot's local frame between two odom msgs."""
+        """Return (dx, dy, prev_theta, dtheta) between two odom msgs."""
         x0 = prev.pose.pose.position.x
         y0 = prev.pose.pose.position.y
         th0 = yaw_from_quaternion(prev.pose.pose.orientation)
@@ -243,20 +268,21 @@ class MCL(Node):
 
         dx = x1 - x0
         dy = y1 - y0
-        dtheta = th1 - th0
-        # Normalise angle
-        dtheta = math.atan2(math.sin(dtheta), math.cos(dtheta))
-        return dx, dy, dtheta
+        dtheta = math.atan2(math.sin(th1 - th0), math.cos(th1 - th0))
+        return dx, dy, th0, dtheta
 
-    def _motion_update(self, dx, dy, dtheta):
+    def _motion_update(self, dx, dy, prev_theta, dtheta):
         """Apply the odometry motion model to all particles (vectorised)."""
         trans = math.hypot(dx, dy)
         if trans < 1e-6 and abs(dtheta) < 1e-6:
             return
 
         # Decompose into rot1 -> translation -> rot2
-        rot1 = math.atan2(dy, dx) if trans > 1e-6 else 0.0
+        # rot1 is relative to the robot's PREVIOUS heading (Probabilistic Robotics Table 5.6)
+        rot1 = math.atan2(dy, dx) - prev_theta if trans > 1e-6 else 0.0
+        rot1 = math.atan2(math.sin(rot1), math.cos(rot1))  # normalise
         rot2 = dtheta - rot1
+        rot2 = math.atan2(math.sin(rot2), math.cos(rot2))  # normalise
 
         # Noise standard deviations (Probabilistic Robotics Table 5.6)
         sd_rot1 = math.sqrt(self.alpha1 * rot1**2 + self.alpha2 * trans**2)
@@ -299,7 +325,12 @@ class MCL(Node):
 
         for idx in beam_indices:
             r = scan.ranges[idx]
-            if math.isnan(r) or math.isinf(r) or r <= scan.range_min or r >= self.laser_max_range:
+            if (
+                math.isnan(r)
+                or math.isinf(r)
+                or r <= scan.range_min
+                or r >= self.laser_max_range
+            ):
                 continue
 
             angle = scan.angle_min + idx * scan.angle_increment
@@ -412,12 +443,12 @@ class MCL(Node):
         self.pose_pub.publish(pose_msg)
 
         # Broadcast map -> odom TF
-        if self.do_tf_broadcast and self.prev_odom is not None:
-            self._broadcast_tf(mean_x, mean_y, mean_theta, stamp)
+        odom_src = self.prev_odom or self.latest_odom
+        if self.do_tf_broadcast and odom_src is not None:
+            self._broadcast_tf(mean_x, mean_y, mean_theta, stamp, odom_src)
 
-    def _broadcast_tf(self, map_x, map_y, map_theta, stamp):
+    def _broadcast_tf(self, map_x, map_y, map_theta, stamp, odom):
         """Broadcast the map -> odom transform based on the estimated pose and current odom."""
-        odom = self.prev_odom
         odom_x = odom.pose.pose.position.x
         odom_y = odom.pose.pose.position.y
         odom_theta = yaw_from_quaternion(odom.pose.pose.orientation)

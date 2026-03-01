@@ -21,10 +21,7 @@ def generate_launch_description():
     pkg_dir = get_package_share_directory(NODENAME)
     nav2_bringup_dir = get_package_share_directory("nav2_bringup")
 
-    map_yaml = os.path.join(pkg_dir, "world", "bitmaps", f"{CONFIG}.yaml")
-
     slam_params = os.path.join(pkg_dir, "config", "slam_toolbox.yaml")
-    nav2_params = os.path.join(pkg_dir, "config", "nav2_params.yaml")
 
     # Stage + RViz (reuse existing demo launch, no VFH nodes)
     stage_and_rviz = IncludeLaunchDescription(
@@ -49,26 +46,6 @@ def generate_launch_description():
     )
 
     # Nav2 navigation: planner, controller, bt_navigator, behaviors, etc.
-    nav2_navigation = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(nav2_bringup_dir, "launch", "navigation_launch.py")
-        ),
-        launch_arguments={
-            "params_file": nav2_params,
-            "use_sim_time": "true",
-        }.items(),
-    )
-
-    nav2_min_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_dir, "launch", "nav2_minimal.launch.py")
-        ),
-        launch_arguments={
-            "params_file": nav2_params,
-            "use_sim_time": "true",
-        }.items(),
-    )
-
     return LaunchDescription(
         [
             stage_and_rviz,
