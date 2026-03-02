@@ -75,7 +75,11 @@ class MCL(Node):
         self.declare_parameter("max_beams", 60)
         self.declare_parameter("update_min_d", 0.2)  # metres before update
         self.declare_parameter("update_min_a", 0.2)  # radians before update
-        self.declare_parameter("resample_interval", 1)  # updates between resamples
+        self.declare_parameter("resample_interval", 2)  # updates between resamples
+        self.declare_parameter("resample_noise_xy", 0.05)  # roughening position std (m)
+        self.declare_parameter(
+            "resample_noise_theta", 0.02
+        )  # roughening heading std (rad)
         self.declare_parameter("publish_rate", 10.0)  # Hz for particle cloud
         self.declare_parameter("scan_topic", "/base_scan")
         self.declare_parameter("odom_topic", "/odom")
@@ -97,6 +101,8 @@ class MCL(Node):
         self.update_min_d = self.get_parameter("update_min_d").value
         self.update_min_a = self.get_parameter("update_min_a").value
         self.resample_interval = self.get_parameter("resample_interval").value
+        self.resample_noise_xy = self.get_parameter("resample_noise_xy").value
+        self.resample_noise_theta = self.get_parameter("resample_noise_theta").value
         self.publish_rate = self.get_parameter("publish_rate").value
         scan_topic = self.get_parameter("scan_topic").value
         odom_topic = self.get_parameter("odom_topic").value
@@ -279,8 +285,12 @@ class MCL(Node):
 
         # Decompose into rot1 -> translation -> rot2
         # rot1 is relative to the robot's PREVIOUS heading (Probabilistic Robotics Table 5.6)
-        rot1 = math.atan2(dy, dx) - prev_theta if trans > 1e-6 else 0.0
-        rot1 = math.atan2(math.sin(rot1), math.cos(rot1))  # normalise
+        rot1 = (
+            math.atan2(dy, dx) - prev_theta if trans > 1e-6 else 0.0
+        )  # First rotation angle, unbounded
+        rot1 = math.atan2(
+            math.sin(rot1), math.cos(rot1)
+        )  # angle normalization, wrap to (-pi,pi]
         rot2 = dtheta - rot1
         rot2 = math.atan2(math.sin(rot2), math.cos(rot2))  # normalise
 
@@ -297,6 +307,7 @@ class MCL(Node):
         self.particles[:, 0] += noisy_trans * np.cos(self.particles[:, 2] + noisy_rot1)
         self.particles[:, 1] += noisy_trans * np.sin(self.particles[:, 2] + noisy_rot1)
         self.particles[:, 2] += noisy_rot1 + noisy_rot2
+
         # Normalise angles
         self.particles[:, 2] = np.arctan2(
             np.sin(self.particles[:, 2]), np.cos(self.particles[:, 2])
@@ -336,6 +347,10 @@ class MCL(Node):
             angle = scan.angle_min + idx * scan.angle_increment
 
             # Endpoint of this beam for every particle
+            # This essentially positions each beam at each particle and asks:
+            # If I were standing here, facing this direction, and got a reading of r meters at this beam angle,
+            # where in the map would that hit?" Then the likelihood field is queried at those (ex, ey) points
+            # to see how close they are to actual obstacles in the map — particles whose endpoints land near walls get higher weights.
             ex = self.particles[:, 0] + r * np.cos(self.particles[:, 2] + angle)
             ey = self.particles[:, 1] + r * np.sin(self.particles[:, 2] + angle)
 
@@ -343,12 +358,14 @@ class MCL(Node):
             mx = ((ex - ox) / res).astype(int)
             my = ((ey - oy) / res).astype(int)
 
-            # Clamp to map bounds
-            mx = np.clip(mx, 0, w - 1)
-            my = np.clip(my, 0, h - 1)
+            # Particles whose beam endpoints fall outside the map get a
+            # large distance penalty instead of being clamped to the edge.
+            in_bounds = (mx >= 0) & (mx < w) & (my >= 0) & (my < h)
+            mx_safe = np.clip(mx, 0, w - 1)
+            my_safe = np.clip(my, 0, h - 1)
 
-            # Look up distance in the likelihood field
-            dist = self.likelihood_field[my, mx]
+            dist = self.likelihood_field[my_safe, mx_safe]
+            dist[~in_bounds] = self.laser_max_range  # heavy penalty
 
             # Gaussian probability
             pz = self.z_hit * np.exp(-0.5 * (dist / self.sigma_hit) ** 2)
@@ -390,6 +407,13 @@ class MCL(Node):
 
         self.particles = new_particles
         self.weights = np.ones(n) / n
+
+        # Roughening: jitter resampled particles to maintain diversity
+        if self.resample_noise_xy > 0:
+            self.particles[:, 0] += np.random.normal(0, self.resample_noise_xy, n)
+            self.particles[:, 1] += np.random.normal(0, self.resample_noise_xy, n)
+        if self.resample_noise_theta > 0:
+            self.particles[:, 2] += np.random.normal(0, self.resample_noise_theta, n)
 
     # ================================================================
     #  Publishing

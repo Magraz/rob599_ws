@@ -43,9 +43,9 @@ window
 floorplan
 ( 
   name "graf201"
-  size [32.000 18.000 0.800]
+  size [30.000 25.000 0.800]
   pose [0 0 0 0]
-  bitmap "bitmaps/graf201.png"
+  bitmap "bitmaps/big_world.png"
   gui_move 0
 )
 
@@ -69,5 +69,5 @@ turtlebot_with_laser
   # can refer to the robot by this name
   name "robot_0"
   color "red"
-  pose [ -6.00 -4.00 0 45 ]
+  pose [ -12.00 -10.00 0 45 ]
 )

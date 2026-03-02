@@ -101,10 +101,10 @@ def generate_launch_description():
                 "alpha2": 0.2,
                 "alpha3": 0.2,
                 "alpha4": 0.2,
-                "sigma_hit": 0.2,
-                "z_hit": 0.95,
-                "z_rand": 0.05,
-                "laser_max_range": 5.0,
+                "sigma_hit": 0.5,
+                "z_hit": 0.5,
+                "z_rand": 0.5,
+                "laser_max_range": 10.0,
                 "max_beams": 60,
                 "update_min_d": 0.2,
                 "update_min_a": 0.2,
@@ -129,12 +129,12 @@ def generate_launch_description():
         f"position: {{x: -4.00, y: -6.00, z: 0.0}}, "
         f"orientation: {{x: 0.0, y: 0.0, z: {qz:.5f}, w: {qw:.5f}}}"
         "}, covariance: ["
-        "0.25, 0.0, 0.0, 0.0, 0.0, 0.0, "
-        "0.0, 0.25, 0.0, 0.0, 0.0, 0.0, "
+        "4.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
+        "0.0, 4.0, 0.0, 0.0, 0.0, 0.0, "
         "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
         "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
         "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "
-        "0.0, 0.0, 0.0, 0.0, 0.0, 0.06853"
+        "0.0, 0.0, 0.0, 0.0, 0.0, 0.5"
         "]}"
         "}"
     )
@@ -161,7 +161,7 @@ def generate_launch_description():
         [
             DeclareLaunchArgument("world", default_value=DEFAULT_WORLD),
             DeclareLaunchArgument("use_sim_time", default_value="true"),
-            DeclareLaunchArgument("num_particles", default_value="1000"),
+            DeclareLaunchArgument("num_particles", default_value="2000"),
             DeclareLaunchArgument("scan_topic", default_value="/base_scan"),
             DeclareLaunchArgument("odom_topic", default_value="/odom"),
             stage,

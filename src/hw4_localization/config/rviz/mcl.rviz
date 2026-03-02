@@ -7,16 +7,16 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1
+        - /TF1/Status1
         - /MCL Particles1
         - /Map1
       Splitter Ratio: 0.5
-    Tree Height: 863
+    Tree Height: 247
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
     Expanded:
-      - /2D Goal Pose1
-      - /Publish Point1
+      - /2D Pose Estimate1
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
   - Class: rviz_common/Views
@@ -191,9 +191,9 @@ Visualization Manager:
     - Class: rviz_default_plugins/Measure
       Line color: 128; 128; 0
     - Class: rviz_default_plugins/SetInitialPose
-      Covariance x: 0.25
-      Covariance y: 0.25
-      Covariance yaw: 0.06853891909122467
+      Covariance x: 40
+      Covariance y: 8
+      Covariance yaw: 0.5
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -231,19 +231,19 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 60.80778503417969
+      Scale: 39.22534942626953
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 2.7594799995422363
-      Y: 0.15136389434337616
+      X: 0.3044413924217224
+      Y: -0.05169256776571274
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1403
+  Height: 819
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002dc0000051dfc0200000005fb000000100044006900730070006c006100790073010000003f000003ed000000cc00fffffffb0000001200530065006c0065006300740069006f006e00000001ec000000c20000005d00fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073000000023a000000e40000005d00fffffffb0000000a0056006900650077007300000002a8000001f9000000a900fffffffb0000000800540069006d006501000004320000012a0000003c00ffffff000006dc0000051d00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000001000000000000026f000002d5fc0200000005fb000000100044006900730070006c006100790073010000003f00000185000000cc00fffffffb0000001200530065006c0065006300740069006f006e00000001ec000000c20000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007301000001ca0000009f0000005d00fffffffb0000000a0056006900650077007300000002a8000001f9000000a900fffffffb0000000800540069006d0065010000026f000000a50000003c00ffffff000002c6000002d500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -252,6 +252,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 2494
-  X: 66
+  Width: 1339
+  X: 90
   Y: 0

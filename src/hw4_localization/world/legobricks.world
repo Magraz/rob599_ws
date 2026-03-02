@@ -45,7 +45,7 @@ floorplan
   name "graf201"
   size [32.000 18.000 0.800]
   pose [0 0 0 0]
-  bitmap "bitmaps/graf201.png"
+  bitmap "bitmaps/legobricks.png"
   gui_move 0
 )
 

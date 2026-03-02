@@ -1,0 +1,6 @@
+image: big_world.pgm
+resolution: 0.0333333333
+origin: [-15.0, -12.5, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
