@@ -368,10 +368,19 @@ class MCL(Node):
             dist[~in_bounds] = self.laser_max_range  # heavy penalty
 
             # Gaussian probability
-            pz = self.z_hit * np.exp(-0.5 * (dist / self.sigma_hit) ** 2)
-            pz += self.z_rand / self.laser_max_range
+            pz = self.z_hit * np.exp(
+                -0.5 * (dist / self.sigma_hit) ** 2
+            )  # The 1/sigma*sqrt(2*pi) multiplier is ignored since it would scale all weights equally, so removing it doesn't affect their relation to each other.
+            pz += (
+                self.z_rand / self.laser_max_range
+            )  # Adds small random prob, so that probability doesn't collapse to 0
             # Avoid log(0)
-            pz = np.maximum(pz, 1e-300)
+            pz = np.maximum(
+                pz, 1e-300
+            )  # Set the lowest value possible to 1e-300, to avoid 0
+
+            # Effectively multiplies the current probability of each particle by the probability of the current
+            # beam's measurement being correct from each particle's perspective.
             log_weights += np.log(pz)
 
         # Convert log-weights to weights
