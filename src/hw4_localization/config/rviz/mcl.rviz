@@ -6,12 +6,12 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /LaserScan1
         - /TF1
-        - /TF1/Status1
         - /MCL Particles1
         - /Map1
       Splitter Ratio: 0.5
-    Tree Height: 247
+    Tree Height: 583
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -65,9 +65,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 1
+      Max Intensity: 234
       Min Color: 0; 0; 0
-      Min Intensity: 1
+      Min Intensity: 66
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
@@ -80,7 +80,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /base_scan
+        Value: /scan
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -91,13 +91,21 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_footprint:
+          Value: true
         base_link:
           Value: true
-        laser:
+        base_scan:
           Value: true
-        map:
+        caster_back_link:
+          Value: true
+        imu_link:
           Value: true
         odom:
+          Value: true
+        wheel_left_link:
+          Value: true
+        wheel_right_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -105,10 +113,18 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
+        odom:
+          base_footprint:
             base_link:
-              laser:
+              base_scan:
+                {}
+              caster_back_link:
+                {}
+              imu_link:
+                {}
+              wheel_left_link:
+                {}
+              wheel_right_link:
                 {}
       Update Interval: 0
       Value: true
@@ -231,7 +247,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 39.22534942626953
+      Scale: 65.23184967041016
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
       X: 0.3044413924217224
@@ -243,7 +259,7 @@ Window Geometry:
   Height: 819
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000001000000000000026f000002d5fc0200000005fb000000100044006900730070006c006100790073010000003f00000185000000cc00fffffffb0000001200530065006c0065006300740069006f006e00000001ec000000c20000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007301000001ca0000009f0000005d00fffffffb0000000a0056006900650077007300000002a8000001f9000000a900fffffffb0000000800540069006d0065010000026f000000a50000003c00ffffff000002c6000002d500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000001000000000000026f000002d5fc0200000005fb000000100044006900730070006c006100790073010000003f000002d5000000cc00fffffffb0000001200530065006c0065006300740069006f006e00000001ec000000c20000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007300000001ca0000009f0000005d00fffffffb0000000a0056006900650077007300000002a8000001f9000000a900fffffffb0000000800540069006d0065000000023e000000d60000003c00ffffff000002c6000002d500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
