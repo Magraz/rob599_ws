@@ -6,7 +6,7 @@ This repository the code for the individual part of assignment  of ROB599.
 
 The write up is located at:
 
-`hw5_nav2/HW5_Individual_Assignment_Writeup.pdf`
+`hw5_nav2/HW5_Individual_Assignment.pdf`
 
 ## Video demonstration
 
